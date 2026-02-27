@@ -9,9 +9,10 @@ import { Router } from '@angular/router';
 import { ErrorService } from '../../shared/services/error.service';
 import { forkJoin } from 'rxjs';
 @Component({
-  selector: 'ngx-add',
-  templateUrl: './add.component.html',
-  styleUrls: ['./add.component.scss']
+    selector: 'ngx-add',
+    templateUrl: './add.component.html',
+    styleUrls: ['./add.component.scss'],
+    standalone: false
 })
 export class AddComponent implements OnInit {
   shippingCountry: Array<any> = []

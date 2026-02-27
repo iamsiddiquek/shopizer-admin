@@ -1,29 +1,39 @@
 <div class="inner_pages create_customer">
 
   <nb-card-header class="main_header">
-    <h1 class="page_title" *ngIf="buttonText == 'Save'">{{'CUSTOMERS.CREATE_CUSTOMER' | translate}}</h1>
-    <h1 class="page_title" *ngIf="buttonText == 'Update'">{{'CUSTOMERS.UPDATE_CUSTOMER' | translate}}</h1>
+    @if (buttonText == 'Save') {
+      <h1 class="page_title">{{'CUSTOMERS.CREATE_CUSTOMER' | translate}}</h1>
+    }
+    @if (buttonText == 'Update') {
+      <h1 class="page_title">{{'CUSTOMERS.UPDATE_CUSTOMER' | translate}}</h1>
+    }
     <div class="content_spacing">
       <nb-select [(selected)]="selectedItem" outline shape="rectangle" class="headerDropdown">
-        <nb-option *ngFor="let item of sidemenuLinks" [value]="item.id" (click)="onClickRoute(item.link)">{{ item.title
-          }}
-        </nb-option>
+        @for (item of sidemenuLinks; track item) {
+          <nb-option [value]="item.id" (click)="onClickRoute(item.link)">{{ item.title
+            }}
+          </nb-option>
+        }
       </nb-select>
     </div>
     <div class="content_spacing">
       <button type="button" nbButton class="cancel_button" (click)="goToback()">{{ 'ORDER_FORM.CANCLE'
-        | translate}}</button>
+      | translate}}</button>
     </div>
     <div class="
           content_spacing">
-      <button type="button" *ngIf="buttonText == 'Update'" nbButton class="success_button" [disabled]="!customerForm.form.valid"
-        (click)="onAddCustomer()">{{'CUSTOMERS.UPDATE'
-        |
+      @if (buttonText == 'Update') {
+        <button type="button" nbButton class="success_button" [disabled]="!customerForm.form.valid"
+          (click)="onAddCustomer()">{{'CUSTOMERS.UPDATE'
+          |
         translate }}</button>
-      <button type="button" *ngIf="buttonText == 'Save'" nbButton class="success_button" [disabled]="!customerForm.form.valid"
-        (click)="onAddCustomer()">{{'COMMON.SAVE'
-        |
+      }
+      @if (buttonText == 'Save') {
+        <button type="button" nbButton class="success_button" [disabled]="!customerForm.form.valid"
+          (click)="onAddCustomer()">{{'COMMON.SAVE'
+          |
         translate }}</button>
+      }
     </div>
   </nb-card-header>
 
@@ -91,28 +101,38 @@
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                   <div class="form-group">
                     <label class="label inputLabel">{{'ORDER_FORM.COUNTRY' | translate}}<span>*</span></label>
-                    <nb-select *ngIf="billingCountry.length > 0" placeholder="{{'ORDER_FORM.SELECT_COUNTRY' | translate}}"
-                      outline shape="rectangle" [(ngModel)]="billing.country" name="country" (selectedChange)="onBillingChange($event, 1)"
-                      class="select_fields" required>
-                      <nb-option *ngFor="let country of billingCountry" [value]="country.code">{{ country.name }}
-                      </nb-option>
-                    </nb-select>
+                    @if (billingCountry.length > 0) {
+                      <nb-select placeholder="{{'ORDER_FORM.SELECT_COUNTRY' | translate}}"
+                        outline shape="rectangle" [(ngModel)]="billing.country" name="country" (selectedChange)="onBillingChange($event, 1)"
+                        class="select_fields" required>
+                        @for (country of billingCountry; track country) {
+                          <nb-option [value]="country.code">{{ country.name }}
+                          </nb-option>
+                        }
+                      </nb-select>
+                    }
                   </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                  <div class="form-group" *ngIf="billingStateData.length > 0">
-                    <label class="label inputLabel">{{'ORDER_FORM.STATE' | translate}}<span>*</span></label>
-                    <nb-select placeholder="{{'ORDER_FORM.SELECT_STATE' | translate}}" class="select_fields" outline
-                      shape="rectangle" [(ngModel)]="billing.zone" name="zone" required>
-                      <nb-option *ngFor="let state of billingStateData" [value]="state.code">{{ state.name }}
-                      </nb-option>
-                    </nb-select>
-                  </div>
-                  <div class="form-group" *ngIf="billingStateData.length == 0">
-                    <label class="label inputLabel">{{'ORDER_FORM.STATE' | translate}}<span>*</span></label>
-                    <input type="text" class="form-control inputText" placeholder="{{'ORDER_FORM.ENTER_STATE' | translate}}"
-                      [(ngModel)]="billing.zone" name="zone" required>
-                  </div>
+                  @if (billingStateData.length > 0) {
+                    <div class="form-group">
+                      <label class="label inputLabel">{{'ORDER_FORM.STATE' | translate}}<span>*</span></label>
+                      <nb-select placeholder="{{'ORDER_FORM.SELECT_STATE' | translate}}" class="select_fields" outline
+                        shape="rectangle" [(ngModel)]="billing.zone" name="zone" required>
+                        @for (state of billingStateData; track state) {
+                          <nb-option [value]="state.code">{{ state.name }}
+                          </nb-option>
+                        }
+                      </nb-select>
+                    </div>
+                  }
+                  @if (billingStateData.length == 0) {
+                    <div class="form-group">
+                      <label class="label inputLabel">{{'ORDER_FORM.STATE' | translate}}<span>*</span></label>
+                      <input type="text" class="form-control inputText" placeholder="{{'ORDER_FORM.ENTER_STATE' | translate}}"
+                        [(ngModel)]="billing.zone" name="zone" required>
+                    </div>
+                  }
                 </div>
               </div>
               <div class="row">
@@ -142,16 +162,19 @@
                 </div>
 
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                  <div class="form-group" *ngIf="languages.length">
-                    <label class="label inputLabel">{{'CUSTOMERS.DEFAULT_LANGUAGE' | translate}}</label>
-
-                    <nb-select placeholder="{{'CUSTOMERS.SELECT_LANGUAGE' | translate}}" class="select_fields" outline
-                    shape="rectangle" [(ngModel)]="info.language" required name='language'>
-                      <nb-option *ngFor="let language of languages"
-                      [value]="language.code">{{
-                      ('LANG.'+language.code) |translate }}</nb-option>
-                    </nb-select>
-                  </div>
+                  @if (languages.length) {
+                    <div class="form-group">
+                      <label class="label inputLabel">{{'CUSTOMERS.DEFAULT_LANGUAGE' | translate}}</label>
+                      <nb-select placeholder="{{'CUSTOMERS.SELECT_LANGUAGE' | translate}}" class="select_fields" outline
+                        shape="rectangle" [(ngModel)]="info.language" required name='language'>
+                        @for (language of languages; track language) {
+                          <nb-option
+                            [value]="language.code">{{
+                          ('LANG.'+language.code) |translate }}</nb-option>
+                        }
+                      </nb-select>
+                    </div>
+                  }
                 </div>
               </div>
 
@@ -168,7 +191,7 @@
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                   <div class="form-group">
                     <label for="exampleInputPassword1" class="label inputLabel">{{'ORDER_FORM.FIRST_NAME' |
-                      translate}}</label>
+                    translate}}</label>
                     <input type="text" class="form-control inputText" id="first_name" placeholder="{{'ORDER_FORM.FIRST_NAME' |
                     translate}}"
                       [(ngModel)]="shipping.firstName" name="shipping.firstName" #firstName="ngModel">
@@ -177,7 +200,7 @@
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                   <div class="form-group">
                     <label for="exampleInputPassword1" class="label inputLabel">{{'ORDER_FORM.LAST_NAME' |
-                      translate}}</label>
+                    translate}}</label>
                     <input type="text" class="form-control inputText" id="last_name" placeholder="{{'ORDER_FORM.LAST_NAME' |
                     translate}}"
                       [(ngModel)]="shipping.lastName" name="shipping.lastName" #lastName="ngModel">
@@ -195,7 +218,7 @@
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                   <div class="form-group">
                     <label for="exampleInputPassword1" class="label inputLabel">{{'ORDER_FORM.STREET_ADDRESS' |
-                      translate}}</label>
+                    translate}}</label>
                     <input type="text" class="form-control inputText" id="shipping_address" placeholder="{{'ORDER_FORM.STREET_ADDRESS' | translate}}"
                       [(ngModel)]="shipping.address" name="shipping.address" #address="ngModel">
                   </div>
@@ -221,28 +244,38 @@
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                   <div class="form-group">
                     <label class="label inputLabel">{{'ORDER_FORM.COUNTRY' | translate}}</label>
-                    <nb-select *ngIf="shippingCountry.length > 0" placeholder="{{'ORDER_FORM.SELECT_COUNTRY' | translate}}"
-                      outline shape="rectangle" (selectedChange)="onShippingChange($event, 1)" [(ngModel)]="shipping.country"
-                      class="select_fields" name="shipping.country">
-                      <nb-option *ngFor="let country of shippingCountry" [value]="country.code">{{
-                        country.name }}</nb-option>
-                    </nb-select>
+                    @if (shippingCountry.length > 0) {
+                      <nb-select placeholder="{{'ORDER_FORM.SELECT_COUNTRY' | translate}}"
+                        outline shape="rectangle" (selectedChange)="onShippingChange($event, 1)" [(ngModel)]="shipping.country"
+                        class="select_fields" name="shipping.country">
+                        @for (country of shippingCountry; track country) {
+                          <nb-option [value]="country.code">{{
+                          country.name }}</nb-option>
+                        }
+                      </nb-select>
+                    }
                   </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                  <div class="form-group" *ngIf="shippingStateData.length > 0">
-                    <label class="label inputLabel">{{'ORDER_FORM.STATE' | translate}}</label>
-                    <nb-select placeholder="{{'ORDER_FORM.SELECT_STATE' | translate}}" outline shape="rectangle" class="select_fields"
-                      [(ngModel)]="shipping.zone" name="shipping.zone">
-                      <nb-option *ngFor="let state of shippingStateData" [value]="state.code">{{ state.name }}
-                      </nb-option>
-                    </nb-select>
-                  </div>
-                  <div class="form-group" *ngIf="shippingStateData.length == 0">
-                    <label class="label inputLabel">{{'ORDER_FORM.STATE' | translate}}</label>
-                    <input type="text" class="form-control inputText" placeholder="{{'ORDER_FORM.ENTER_STATE' | translate}}"
-                      [(ngModel)]="shipping.zone" name="shipping.zone">
-                  </div>
+                  @if (shippingStateData.length > 0) {
+                    <div class="form-group">
+                      <label class="label inputLabel">{{'ORDER_FORM.STATE' | translate}}</label>
+                      <nb-select placeholder="{{'ORDER_FORM.SELECT_STATE' | translate}}" outline shape="rectangle" class="select_fields"
+                        [(ngModel)]="shipping.zone" name="shipping.zone">
+                        @for (state of shippingStateData; track state) {
+                          <nb-option [value]="state.code">{{ state.name }}
+                          </nb-option>
+                        }
+                      </nb-select>
+                    </div>
+                  }
+                  @if (shippingStateData.length == 0) {
+                    <div class="form-group">
+                      <label class="label inputLabel">{{'ORDER_FORM.STATE' | translate}}</label>
+                      <input type="text" class="form-control inputText" placeholder="{{'ORDER_FORM.ENTER_STATE' | translate}}"
+                        [(ngModel)]="shipping.zone" name="shipping.zone">
+                    </div>
+                  }
                 </div>
               </div>
 
@@ -250,10 +283,12 @@
               <div class="form-group">
                 <label class="col-sm-3 col-form-label inputLabel">{{ 'CUSTOMERS.GROUPS' | translate }} *</label>
                 <div class="col-sm-12 group-block">
-                  <nb-checkbox *ngFor="let group of groups" (change)="addRole(group)" [value]="group.checked"
-                    [disabled]="group.disabled">
-                    {{ group.name }}
-                  </nb-checkbox>
+                  @for (group of groups; track group) {
+                    <nb-checkbox (change)="addRole(group)" [value]="group.checked"
+                      [disabled]="group.disabled">
+                      {{ group.name }}
+                    </nb-checkbox>
+                  }
                 </div>
               </div>
 

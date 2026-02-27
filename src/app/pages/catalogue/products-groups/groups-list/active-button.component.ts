@@ -4,7 +4,8 @@ import { ProductGroupsService } from '../services/product-groups.service';
 
 
 @Component({
-  template: `<input type="checkbox" [checked]="value" (click)="clicked() "/>`,
+    template: `<input type="checkbox" [checked]="value" (click)="clicked() "/>`,
+    standalone: false
 })
 export class ActiveButtonComponent {
   @Input() value: boolean;

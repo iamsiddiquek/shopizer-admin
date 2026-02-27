@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { roles } from '../models/access-roles';
 import { CrudService } from './crud.service';
 
@@ -85,14 +86,48 @@ export class UserService {
   }
 
   getUsersList(store, params): Observable<any> {
-    return this.crudService.get(`/v1/private/users`, params);
+    const requestParams = {
+      ...params,
+      store: params && params.store ? params.store : store,
+    };
+
+    console.info('[UserService] Fetching users list', requestParams);
+
+    return this.crudService.get(`/v1/private/users`, requestParams).pipe(
+      map((res: any) => this.normalizeApiResponse(res, 'Users loaded successfully', [])),
+      catchError((error) => {
+        console.error('[UserService] Failed to fetch users list', error);
+        return throwError(() => error);
+      }),
+    );
   }
 
   createUser(user: any, store: any): Observable<any> {
     const params = {
       'store': store
     };
-    return this.crudService.post(`/v1/private/user/`, user, { params });
+
+    console.info('[UserService] Creating user', { store, email: user && user.emailAddress });
+
+    return this.crudService.post(`/v1/private/user/`, user, { params, observe: 'response' }).pipe(
+      map((response: any) => {
+        const body = response && response.body;
+        const normalized = this.normalizeApiResponse(
+          body,
+          'User created successfully',
+          body || null,
+        );
+
+        return {
+          ...normalized,
+          httpStatus: response && response.status,
+        };
+      }),
+      catchError((error) => {
+        console.error('[UserService] Failed to create user', error);
+        return throwError(() => error);
+      }),
+    );
   }
 
   updateUser(id: any, user: any, store: any): Observable<any> {
@@ -123,6 +158,26 @@ export class UserService {
 
   destroyUserId() {
     localStorage.removeItem(this.userIdString);
+  }
+
+  private normalizeApiResponse(body: any, defaultMessage: string, defaultData: any) {
+    if (Array.isArray(body)) {
+      return {
+        status: 'success',
+        message: defaultMessage,
+        data: body,
+        recordsTotal: body.length,
+        totalPages: 1,
+      };
+    }
+
+    return {
+      status: body && body.status ? body.status : 'success',
+      message: body && body.message ? body.message : defaultMessage,
+      data: body && body.data !== undefined ? body.data : defaultData,
+      recordsTotal: body && typeof body.recordsTotal === 'number' ? body.recordsTotal : undefined,
+      totalPages: body && typeof body.totalPages === 'number' ? body.totalPages : undefined,
+    };
   }
 
 }

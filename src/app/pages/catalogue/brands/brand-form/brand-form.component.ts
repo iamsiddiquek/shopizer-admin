@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 import { BrandService } from '../services/brand.service';
 import { ConfigService } from '../../../shared/services/config.service';
@@ -10,14 +10,15 @@ import { validators } from '../../../shared/validation/validators';
 import { slugify } from '../../../shared/utils/slugifying';
 
 @Component({
-  selector: 'ngx-brand-form',
-  templateUrl: './brand-form.component.html',
-  styleUrls: ['./brand-form.component.scss']
+    selector: 'ngx-brand-form',
+    templateUrl: './brand-form.component.html',
+    styleUrls: ['./brand-form.component.scss'],
+    standalone: false
 })
 export class BrandFormComponent implements OnInit {
   @Input() brand;
   @Input() title;
-  form: FormGroup;
+  form: UntypedFormGroup;
   loader = false;
   defaultLanguage = localStorage.getItem('lang');
   languages = [];
@@ -40,7 +41,7 @@ export class BrandFormComponent implements OnInit {
 
   constructor(
     private brandService: BrandService,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private configService: ConfigService,
     private toastr: ToastrService,
     private translate: TranslateService,
@@ -73,7 +74,7 @@ export class BrandFormComponent implements OnInit {
   }
 
   addFormArray() {
-    const control = <FormArray>this.form.controls.descriptions;
+    const control = <UntypedFormArray>this.form.controls.descriptions;
     this.languages.forEach(lang => {
       control.push(
         this.fb.group({
@@ -106,7 +107,7 @@ export class BrandFormComponent implements OnInit {
       if (this.brand != null && this.brand.descriptions) {
         this.brand.descriptions.forEach((description) => {
           if (desc.language === description.language) {
-            (<FormArray>this.form.get('descriptions')).at(index).patchValue({
+            (<UntypedFormArray>this.form.get('descriptions')).at(index).patchValue({
               language: description.language,
               name: description.name,
               highlights: description.highlights,
@@ -137,12 +138,12 @@ export class BrandFormComponent implements OnInit {
     return this.form.get('selectedLanguage');
   }
 
-  get descriptions(): FormArray {
-    return <FormArray>this.form.get('descriptions');
+  get descriptions(): UntypedFormArray {
+    return <UntypedFormArray>this.form.get('descriptions');
   }
 
   changeName(event, index) {
-    (<FormArray>this.form.get('descriptions')).at(index).patchValue({
+    (<UntypedFormArray>this.form.get('descriptions')).at(index).patchValue({
       friendlyUrl: slugify(event)
     });
   }

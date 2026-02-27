@@ -15,9 +15,6 @@ import { ConfigureComponent } from './configure-form/configure.component';
     PaymentMethodsComponent,
     ConfigureComponent
   ],
-  entryComponents: [
-
-  ],
   imports: [
     PaymentRoutingModule,
     SharedModule,

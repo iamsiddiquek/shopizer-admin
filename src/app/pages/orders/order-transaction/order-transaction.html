@@ -27,23 +27,25 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="item" *ngFor="let transaction of transactionData">
-          <td>
-            {{transaction.id}}
-          </td>
-          <td>
-            {{transaction.transactionDate}}
-          </td>
-          <td>
-            {{transaction.transactionType}}
-          </td>
-          <td>
-            {{transaction.amount}}
-          </td>
-          <td style="word-break: break-all;">
-            {{transaction.details}}
-          </td>
-        </tr>
+        @for (transaction of transactionData; track transaction) {
+          <tr class="item">
+            <td>
+              {{transaction.id}}
+            </td>
+            <td>
+              {{transaction.transactionDate}}
+            </td>
+            <td>
+              {{transaction.transactionType}}
+            </td>
+            <td>
+              {{transaction.amount}}
+            </td>
+            <td style="word-break: break-all;">
+              {{transaction.details}}
+            </td>
+          </tr>
+        }
       </tbody>
     </table>
   </div>

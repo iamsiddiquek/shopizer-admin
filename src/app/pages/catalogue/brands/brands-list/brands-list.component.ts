@@ -12,9 +12,10 @@ import { ToastrService } from 'ngx-toastr';
 import { listenerCount } from 'process';
 
 @Component({
-  selector: 'ngx-brands-list',
-  templateUrl: './brands-list.component.html',
-  styleUrls: ['./brands-list.component.scss']
+    selector: 'ngx-brands-list',
+    templateUrl: './brands-list.component.html',
+    styleUrls: ['./brands-list.component.scss'],
+    standalone: false
 })
 export class BrandsListComponent implements OnInit {
   source: LocalDataSource = new LocalDataSource();

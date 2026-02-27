@@ -29,7 +29,6 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     CustomModule,
     NgMultiSelectDropDownModule.forRoot()
   ],
-  entryComponents: [ActiveButtonComponent]
 })
 export class ProductsGroupsModule {
 }

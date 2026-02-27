@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Location, PlatformLocation } from '@angular/common';
-import { FormBuilder, FormGroup, Validators, ValidationErrors } from '@angular/forms';
+import { UntypedFormBuilder, FormGroup, Validators, ValidationErrors } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 // import { TokenService } from '../services/token.service';
@@ -12,9 +12,10 @@ import { ConfigService } from '../../shared/services/config.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'ngx-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+    selector: 'ngx-register',
+    templateUrl: './register.component.html',
+    styleUrls: ['./register.component.scss'],
+    standalone: false
 })
 export class RegisterComponent implements OnInit {
   showPass = 0;
@@ -38,7 +39,7 @@ export class RegisterComponent implements OnInit {
   countries: Array<any> = [];
   provinces: Array<any> = [];
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private authService: AuthService,
     private router: Router,
     // private tokenService: TokenService,

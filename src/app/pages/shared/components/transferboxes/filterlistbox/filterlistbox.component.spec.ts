@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { FilterlistboxComponent } from './filterlistbox.component';
+import { FilterlistboxComponent } from '../../../../shipping/transferlistbox/filterlistbox/filterlistbox.component';
 
 describe('FilterlistboxComponent', () => {
   let component: FilterlistboxComponent;

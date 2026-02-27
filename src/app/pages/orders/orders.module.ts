@@ -20,11 +20,6 @@ import { CustomModule } from '../custom-component/custom.module';
     OrderHistoryComponent,
     OrderTransactionComponent
   ],
-  entryComponents: [
-    OrderInvoiceComponent,
-    OrderHistoryComponent,
-    OrderTransactionComponent
-  ],
   imports: [
     OrdersRoutingModule,
 

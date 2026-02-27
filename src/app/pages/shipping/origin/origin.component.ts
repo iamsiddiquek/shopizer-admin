@@ -10,9 +10,10 @@ import { SharedService } from '../services/shared.service';
 
 
 @Component({
-  selector: 'ngx-origin',
-  templateUrl: './origin.component.html',
-  styleUrls: ['./origin.component.scss']
+    selector: 'ngx-origin',
+    templateUrl: './origin.component.html',
+    styleUrls: ['./origin.component.scss'],
+    standalone: false
 })
 export class OriginComponent implements OnInit {
   shipOriginForm = {

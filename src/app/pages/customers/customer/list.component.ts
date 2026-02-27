@@ -9,9 +9,10 @@ import { ToastrService } from 'ngx-toastr';
 import { ErrorService } from '../../shared/services/error.service';
 
 @Component({
-  selector: 'ngx-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+    selector: 'ngx-list',
+    templateUrl: './list.component.html',
+    styleUrls: ['./list.component.scss'],
+    standalone: false
 })
 export class ListComponent implements OnInit {
   source: any = new LocalDataSource();

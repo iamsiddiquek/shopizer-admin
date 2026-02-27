@@ -13,28 +13,30 @@
       </form>
 
       <div class="grid-body row" data-layout="fitRows">
-        <div class="col-lg-3 col-md-3 col-sm-3 " *ngFor="let result of shippingData; let i = index">
-          <div class="grid-product">
-            <div class="image bg-lightblue">
-              <a>
-                <img *ngIf="result.image" src="../../../../assets/img/{{result.image}}" alt="image">
-                <img *ngIf="result.image == null" src="../../../../assets/img/noimg.png" alt="image">
-              </a>
+        @for (result of shippingData; track result; let i = $index) {
+          <div class="col-lg-3 col-md-3 col-sm-3 ">
+            <div class="grid-product">
+              <div class="image bg-lightblue">
+                <a>
+                  @if (result.image) {
+                    <img src="../../../../assets/img/{{result.image}}" alt="image">
+                  }
+                  @if (result.image == null) {
+                    <img src="../../../../assets/img/noimg.png" alt="image">
+                  }
+                </a>
+              </div>
+              <a class="name">{{ result.code | translate}}</a>
+              <div class="name-subtext">({{result.code}})</div>
+              <div class="configure-button">
+                <a [ngClass]="result.active && result.configured ? 'createBtn success' : !result.active && !result.configured ? 'createBtn': 'createBtn warning'"
+                  (click)="onClickConfigure(result.code)">
+                  <label>Configure</label>
+                </a>
+              </div>
             </div>
-            <a class="name">{{ result.code | translate}}</a>
-            <div class="name-subtext">({{result.code}})</div>
-
-            <div class="configure-button">
-              <a [ngClass]="result.active && result.configured ? 'createBtn success' : !result.active && !result.configured ? 'createBtn': 'createBtn warning'"
-                (click)="onClickConfigure(result.code)">
-                
-                <label>Configure</label>
-              </a>
-              
-            </div>
-
           </div>
-        </div>
+        }
       </div>
 
     </div>

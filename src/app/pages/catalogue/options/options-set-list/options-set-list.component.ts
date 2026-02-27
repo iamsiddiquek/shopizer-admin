@@ -8,9 +8,10 @@ import { ShowcaseDialogComponent } from '../../../shared/components/showcase-dia
 import { NbDialogService } from '@nebular/theme';
 import { ToastrService } from 'ngx-toastr';
 @Component({
-  selector: 'ngx-options-set-list',
-  templateUrl: './options-set-list.component.html',
-  styleUrls: ['./options-set-list.component.scss']
+    selector: 'ngx-options-set-list',
+    templateUrl: './options-set-list.component.html',
+    styleUrls: ['./options-set-list.component.scss'],
+    standalone: false
 })
 export class OptionsSetListComponent implements OnInit {
   source: LocalDataSource = new LocalDataSource();

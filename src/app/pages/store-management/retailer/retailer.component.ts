@@ -3,9 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { StoreService } from '../services/store.service';
 
 @Component({
-  selector: 'ngx-retailer',
-  templateUrl: './retailer.component.html',
-  styleUrls: ['./retailer.component.scss']
+    selector: 'ngx-retailer',
+    templateUrl: './retailer.component.html',
+    styleUrls: ['./retailer.component.scss'],
+    standalone: false
 })
 export class RetailerComponent implements OnInit {
   store: any = {};

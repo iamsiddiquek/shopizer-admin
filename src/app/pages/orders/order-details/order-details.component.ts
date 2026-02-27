@@ -11,9 +11,10 @@ import { Router } from '@angular/router';
 import { parsePhoneNumberFromString, format, AsYouType } from 'libphonenumber-js';
 
 @Component({
-  selector: 'ngx-order-details',
-  templateUrl: './order-details.component.html',
-  styleUrls: ['./order-details.component.scss']
+    selector: 'ngx-order-details',
+    templateUrl: './order-details.component.html',
+    styleUrls: ['./order-details.component.scss'],
+    standalone: false
 })
 export class OrderDetailsComponent implements OnInit {
   shippingCountry: Array<any> = []

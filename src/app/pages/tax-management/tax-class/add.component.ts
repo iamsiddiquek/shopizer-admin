@@ -5,9 +5,10 @@ import { ToastrService } from 'ngx-toastr';
 import { TaxService } from '../services/tax.service';
 
 @Component({
-  selector: 'ngx-tax-class-add',
-  templateUrl: './add.component.html',
-  styleUrls: ['./add.component.scss'],
+    selector: 'ngx-tax-class-add',
+    templateUrl: './add.component.html',
+    styleUrls: ['./add.component.scss'],
+    standalone: false
 })
 export class TaxClassAddComponent implements OnInit {
   tax = {

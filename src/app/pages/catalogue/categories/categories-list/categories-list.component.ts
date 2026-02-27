@@ -14,9 +14,10 @@ import { ToastrService } from 'ngx-toastr';
 import { ListingService } from '../../../shared/services/listing.service';
 
 @Component({
-  selector: 'ngx-categories-list',
-  templateUrl: './categories-list.component.html',
-  styleUrls: ['./categories-list.component.scss']
+    selector: 'ngx-categories-list',
+    templateUrl: './categories-list.component.html',
+    styleUrls: ['./categories-list.component.scss'],
+    standalone: false
 })
 export class CategoriesListComponent implements OnInit {
   source: LocalDataSource = new LocalDataSource();

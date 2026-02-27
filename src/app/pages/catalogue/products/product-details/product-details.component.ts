@@ -3,9 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../services/product.service';
 
 @Component({
-  selector: 'ngx-product-details',
-  templateUrl: './product-details.component.html',
-  styleUrls: ['./product-details.component.scss']
+    selector: 'ngx-product-details',
+    templateUrl: './product-details.component.html',
+    styleUrls: ['./product-details.component.scss'],
+    standalone: false
 })
 export class ProductDetailsComponent implements OnInit {
   product: any = {};

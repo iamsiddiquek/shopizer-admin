@@ -5,12 +5,12 @@
 
     <div class="content_spacing">
       <button type="button" nbButton class="cancel_button" (click)="goToback()">{{ 'ORDER_FORM.CANCLE'
-        | translate}}</button>
+      | translate}}</button>
     </div>
 
     <div class="content_spacing">
       <button nbButton type="button" class="success_button" [nbSpinner]="loading" nbSpinnerSize="large"
-        nbSpinnerStatus="control" (click)="save()">{{ ( !loading ? 'COMMON.SAVE' : '' ) | translate }}</button>
+      nbSpinnerStatus="control" (click)="save()">{{ ( !loading ? 'COMMON.SAVE' : '' ) | translate }}</button>
     </div>
   </nb-card-header>
 
@@ -30,34 +30,48 @@
 
         <div class="form-group">
           <label class="col-form-label inputLabel">{{ 'COMMON.CODE' | translate }}
-            *</label>
+          *</label>
           <input type="text" class="form-control inputText" id="code" formControlName='code' [readOnly]="isReadonlyCode"
             (change)="checkCode($event)" required>
-          <div *ngIf="(code.dirty || code.touched) && code.invalid && code" class="err-message"
-            style="margin-top:10px;">
-            <span *ngIf="code.errors.required">
+          @if ((code.dirty || code.touched) && code.invalid && code) {
+            <div class="err-message"
+              style="margin-top:10px;">
+              @if (code.errors.required) {
+                <span>
+                  {{ 'COMMON.CODE_REQUIRED' | translate}}
+                </span>
+              }
+              @if (code.errors.pattern) {
+                <span>
+                  {{ 'COMMON.ALPHA_DECIMAL_RULE' | translate}}
+                </span>
+              }
+            </div>
+          }
+          @if (isCodeExist) {
+            <span class="err-message">
+              {{ 'COMMON.CODE_EXISTS' | translate}}
+            </span>
+          }
+          @if (!isValidCode) {
+            <div class="err-message" style="margin-top:10px;">
               {{ 'COMMON.CODE_REQUIRED' | translate}}
-            </span>
-            <span *ngIf="code.errors.pattern">
-              {{ 'COMMON.ALPHA_DECIMAL_RULE' | translate}}
-            </span>
-          </div>
-          <span *ngIf="isCodeExist" class="err-message">
-            {{ 'COMMON.CODE_EXISTS' | translate}}
-          </span>
-          <div *ngIf="!isValidCode" class="err-message" style="margin-top:10px;">
-            {{ 'COMMON.CODE_REQUIRED' | translate}}
-          </div>
+            </div>
+          }
         </div>
         <div class="form-group">
           <label class="col-form-label inputLabel">{{ 'OPTION.OPTION_NAME' | translate}} *</label>
           <nb-select (click)="clickOption()" placeholder="{{ 'OPTION_SET.SELECT_OPTION_NAME' | translate}}" outline
             shape="rectangle" formControlName='option' name="option" class="fullWidth" required>
-            <nb-option *ngFor="let option of productOption" [value]="option.id">{{option.name}}</nb-option>
+            @for (option of productOption; track option) {
+              <nb-option [value]="option.id">{{option.name}}</nb-option>
+            }
           </nb-select>
-          <div *ngIf="!isValidOption" class="err-message" style="margin-top:10px;">
-            {{ 'DESCRIPTION_FORM.NAME_REQUIRED' | translate}}
-          </div>
+          @if (!isValidOption) {
+            <div class="err-message" style="margin-top:10px;">
+              {{ 'DESCRIPTION_FORM.NAME_REQUIRED' | translate}}
+            </div>
+          }
         </div>
 
         <div class="form-group">
@@ -66,8 +80,10 @@
           <nb-select multiple placeholder="{{ 'OPTION_SET.ADD_OPTION_VALUE' | translate}}"
             (selectedChange)="setSelected($event)" outline shape="rectangle" [(selected)]="option.optionValues"
             class="fullWidth">
-            <nb-option *ngFor="let optionValue of productOptionValue" [value]="optionValue.id">{{optionValue.name}}
-            </nb-option>
+            @for (optionValue of productOptionValue; track optionValue) {
+              <nb-option [value]="optionValue.id">{{optionValue.name}}
+              </nb-option>
+            }
           </nb-select>
 
         </div>
@@ -79,8 +95,10 @@
           <nb-select multiple placeholder="{{ 'PRODUCT_TYPE.PRODUCT_TYPE_ADD' | translate}}"
             (selectedChange)="setProductTypeSelected($event)" outline shape="rectangle"
             [(selected)]="option.productTypes" class="fullWidth">
-            <nb-option *ngFor="let productType of productTypes" [value]="productType.id">{{productType.code}}
-            </nb-option>
+            @for (productType of productTypes; track productType) {
+              <nb-option [value]="productType.id">{{productType.code}}
+              </nb-option>
+            }
           </nb-select>
 
         </div>
@@ -89,6 +107,6 @@
     </nb-card>
   </form>
 
-  <!-- </div> -->
+<!-- </div> -->
 
 </div>

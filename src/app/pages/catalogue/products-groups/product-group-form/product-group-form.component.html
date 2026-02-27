@@ -4,14 +4,18 @@
       <h1 class="page_title">{{ 'PRODUCT_GROUP.CREATE_PRODUCT_GROUP' | translate}}</h1>
       <div class="content_spacing">
         <button type="button" nbButton class="cancel_button" (click)="goToback()">{{ 'ORDER_FORM.CANCLE'
-          | translate}}</button>
+        | translate}}</button>
       </div>
       <div class="content_spacing">
-        <button type="submit" nbButton *ngIf="!uniqueCode" class="success_button" [nbSpinner]="loading"
-          nbSpinnerSize="large" nbSpinnerStatus="control" (click)="save()" [disabled]="!form.valid">{{ ( !loading ?
+        @if (!uniqueCode) {
+          <button type="submit" nbButton class="success_button" [nbSpinner]="loading"
+            nbSpinnerSize="large" nbSpinnerStatus="control" (click)="save()" [disabled]="!form.valid">{{ ( !loading ?
           'COMMON.SAVE' : '' ) | translate }}</button>
-        <button type="button" nbButton *ngIf="uniqueCode" class="success_button" (click)="update()">{{'COMMON.UPDATE'|
+        }
+        @if (uniqueCode) {
+          <button type="button" nbButton class="success_button" (click)="update()">{{'COMMON.UPDATE'|
           translate }}</button>
+        }
       </div>
     </nb-card-header>
 
@@ -34,36 +38,46 @@
             <input type="text" class="form-control inputText" id="code" formControlName='code'
               (change)="checkCode($event)" placeholder="{{ 'COMMON.CODE' | translate}}" [readOnly]="uniqueCode"
               required>
-            <div class="err-message" *ngIf="(code.dirty || code.touched) && code.invalid && code">
-              <span *ngIf="code.errors.required">
-                {{ 'COMMON.CODE_REQUIRED' | translate}}
+            @if ((code.dirty || code.touched) && code.invalid && code) {
+              <div class="err-message">
+                @if (code.errors.required) {
+                  <span>
+                    {{ 'COMMON.CODE_REQUIRED' | translate}}
+                  </span>
+                }
+                @if (code.errors.pattern) {
+                  <span>
+                    {{ 'COMMON.ALPHA_DECIMAL_RULE' | translate}}
+                  </span>
+                }
+              </div>
+            }
+            @if (!isCodeUnique) {
+              <span class="err-message">
+                {{ 'COMMON.CODE_EXISTS' | translate}}
               </span>
-              <span *ngIf="code.errors.pattern">
-                {{ 'COMMON.ALPHA_DECIMAL_RULE' | translate}}
-              </span>
-            </div>
-            <span *ngIf="!isCodeUnique" class="err-message">
-              {{ 'COMMON.CODE_EXISTS' | translate}}
-            </span>
+            }
           </div>
         </div>
-        <div class="form-group" *ngIf="uniqueCode && products?.length > 0">
-          <div class="col-sm-12">
-            <div class="mainBody">
-              <ng-multiselect-dropdown name="product" placeholder="{{ 'PRODUCT.SELECT' | translate}}"
-                [settings]="dropdownSettings" [data]="products" [formControl]="form.controls['product']"
-                (onSelect)="onItemSelect($event)" (onDeSelect)="onItemDeSelect($event)"
-                (onFilterChange)="onFilterChange($event)">
-              </ng-multiselect-dropdown>
+        @if (uniqueCode && products?.length > 0) {
+          <div class="form-group">
+            <div class="col-sm-12">
+              <div class="mainBody">
+                <ng-multiselect-dropdown name="product" placeholder="{{ 'PRODUCT.SELECT' | translate}}"
+                  [settings]="dropdownSettings" [data]="products" [formControl]="form.controls['product']"
+                  (onSelect)="onItemSelect($event)" (onDeSelect)="onItemDeSelect($event)"
+                  (onFilterChange)="onFilterChange($event)">
+                </ng-multiselect-dropdown>
+              </div>
             </div>
           </div>
-        </div>
+        }
       </nb-card-body>
     </nb-card>
 
 
-    <!-- </div> -->
-  </form>
+  <!-- </div> -->
+</form>
 </div>
 <!-- </nb-card-body>
 </nb-card> -->

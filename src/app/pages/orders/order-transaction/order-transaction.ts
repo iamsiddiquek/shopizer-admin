@@ -2,9 +2,10 @@ import { Component, } from '@angular/core';
 import { NbDialogRef } from '@nebular/theme';
 import * as moment from 'moment';
 @Component({
-  selector: 'ngx-order-transaction',
-  templateUrl: 'order-transaction.html',
-  styleUrls: ['order-transaction.scss'],
+    selector: 'ngx-order-transaction',
+    templateUrl: 'order-transaction.html',
+    styleUrls: ['order-transaction.scss'],
+    standalone: false
 })
 export class OrderTransactionComponent {
   transactionData: any;

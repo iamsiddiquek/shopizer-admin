@@ -1,4 +1,4 @@
-import { Component, OnInit, SystemJsNgModuleLoader } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { LocalDataSource } from 'ng2-smart-table';
 import { AvailableButtonComponent } from './available-button.component';
@@ -14,9 +14,10 @@ import { ListingService } from '../../../shared/services/listing.service';
 
 
 @Component({
-  selector: 'ngx-products-list',
-  templateUrl: './products-list.component.html',
-  styleUrls: ['./products-list.component.scss']
+    selector: 'ngx-products-list',
+    templateUrl: './products-list.component.html',
+    styleUrls: ['./products-list.component.scss'],
+    standalone: false
 })
 export class ProductsListComponent implements OnInit {
   products = [];

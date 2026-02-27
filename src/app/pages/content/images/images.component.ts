@@ -11,9 +11,10 @@ import { TreeModel, DownloadModeEnum, ConfigInterface } from 'ng6-file-man';
 import xhook from 'xhook';
 
 @Component({
-  selector: 'images-table',
-  templateUrl: './images.component.html',
-  styleUrls: ['./images.component.scss'],
+    selector: 'images-table',
+    templateUrl: './images.component.html',
+    styleUrls: ['./images.component.scss'],
+    standalone: false
 })
 
 export class ImagesComponent implements OnInit {
@@ -46,7 +47,9 @@ export class ImagesComponent implements OnInit {
       },
       options: {
         allowFolderDownload: DownloadModeEnum.DOWNLOAD_DISABLED,
-        showFilesInsideTree: true
+        showFilesInsideTree: true,
+        openFolderOnDoubleClick: false,
+        showFolderOptions: true
       }
     };
     this.tree = new TreeModel(treeConfig)

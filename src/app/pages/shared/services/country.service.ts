@@ -1,7 +1,4 @@
-import 'rxjs/Rx';
-import { map } from 'rxjs/operators';// This is where I import map operator
 import { Injectable } from '@angular/core';
-import { Observable } from "rxjs/Rx"
 import { HttpClient } from '@angular/common/http';
 // import { Http, Response } from "@angular/http"
 import { CrudService } from './crud.service';

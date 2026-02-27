@@ -4,7 +4,8 @@ import { QueryBuilderConfig } from 'angular2-query-builder';
 @Component({
     selector: 'ngx-promotion',
     templateUrl: './promotion.component.html',
-    styleUrls: ['./promotion.component.scss']
+    styleUrls: ['./promotion.component.scss'],
+    standalone: false
 })
 export class PromotionComponent implements OnInit {
     query = {

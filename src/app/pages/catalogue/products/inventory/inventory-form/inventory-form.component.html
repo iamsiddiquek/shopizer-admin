@@ -1,47 +1,47 @@
 <div class="inner_pages inventory_create_page">
-  <form [formGroup]='form' *ngIf="!loader">
-    <nb-card-header class="main_header">
-      <h1 class="page_title">{{_title | translate}}</h1>
-
-      <div class="content_spacing back_button">
-        <ngx-back-button></ngx-back-button>
-      </div>
-      <div class="content_spacing">
-        <button type="submit" nbButton class="success_button" [nbSpinner]="loader" nbSpinnerSize="large"
+  @if (!loader) {
+    <form [formGroup]='form'>
+      <nb-card-header class="main_header">
+        <h1 class="page_title">{{_title | translate}}</h1>
+        <div class="content_spacing back_button">
+          <ngx-back-button></ngx-back-button>
+        </div>
+        <div class="content_spacing">
+          <button type="submit" nbButton class="success_button" [nbSpinner]="loader" nbSpinnerSize="large"
           nbSpinnerStatus="control" (click)="save()">{{ ( !loader ? 'COMMON.SAVE' : '' ) | translate }}</button>
-      </div>
-    </nb-card-header>
-    <!-- <div [nbSpinner]="loader" nbSpinnerSize="large" nbSpinnerStatus="primary"> -->
-    <div class="row">
-      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-        <nb-card class="nb-card inline-form-card">
-          <nb-card-header class="nb-card-header">Product Instance details</nb-card-header>
-          <nb-card-body class="nb-card-body">
-            <div class="row">
-              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="form-group">
-                  <div>
-                    <nb-checkbox formControlName='available'>
-                      {{ 'CONTENT.VISIBLE' | translate}}
-                    </nb-checkbox>
+        </div>
+      </nb-card-header>
+      <!-- <div [nbSpinner]="loader" nbSpinnerSize="large" nbSpinnerStatus="primary"> -->
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <nb-card class="nb-card inline-form-card">
+            <nb-card-header class="nb-card-header">Product Instance details</nb-card-header>
+            <nb-card-body class="nb-card-body">
+              <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                    <div>
+                      <nb-checkbox formControlName='available'>
+                        {{ 'CONTENT.VISIBLE' | translate}}
+                      </nb-checkbox>
+                    </div>
                   </div>
-                </div>
-                <div class="form-group">
-                  <label for="sku" class="col-form-label inputLabel">{{ 'PRODUCT.SKU' | translate}} *</label>
-                  <div>
-                    <input type="text" class="form-control inputText" id="sku" formControlName='sku'
-                      placeholder="{{ 'PRODUCT.SKU' | translate}}" (change)="checkSku($event)" required>
-                    <!-- <span *ngIf="(sku.dirty || sku.touched) && sku.invalid && sku" class="err-message">
-                          <span *ngIf="sku.errors.pattern">
-                            {{ 'COMMON.ALPHA_DECIMAL_RULE' | translate}}
-                          </span>
-                          <span *ngIf="sku.errors.required">
-                            {{ 'PRODUCT.SKU_REQUIRED' | translate}}
-                          </span>
-                        </span>
-                        <span *ngIf="!isCodeUnique" class="err-message">
-                          {{ 'COMMON.SKU_EXISTS' | translate}}
-                        </span> -->
+                  <div class="form-group">
+                    <label for="sku" class="col-form-label inputLabel">{{ 'PRODUCT.SKU' | translate}} *</label>
+                    <div>
+                      <input type="text" class="form-control inputText" id="sku" formControlName='sku'
+                        placeholder="{{ 'PRODUCT.SKU' | translate}}" (change)="checkSku($event)" required>
+                      <!-- <span *ngIf="(sku.dirty || sku.touched) && sku.invalid && sku" class="err-message">
+                      <span *ngIf="sku.errors.pattern">
+                        {{ 'COMMON.ALPHA_DECIMAL_RULE' | translate}}
+                      </span>
+                      <span *ngIf="sku.errors.required">
+                        {{ 'PRODUCT.SKU_REQUIRED' | translate}}
+                      </span>
+                    </span>
+                    <span *ngIf="!isCodeUnique" class="err-message">
+                      {{ 'COMMON.SKU_EXISTS' | translate}}
+                    </span> -->
                   </div>
                 </div>
                 <div class="form-group">
@@ -55,10 +55,12 @@
                 <div class="form-group">
                   <label class="col-form-label inputLabel">{{ 'INVENTORY.INVENTORY_STORE' | translate}}</label>
                   <div>
-                    <p-dropdown *ngIf="stores.length" [options]="stores" formControlName='store' filter="true">
-                      <ng-template let-item pTemplate="selectedItem">{{item.label}}</ng-template>
-                      <ng-template let-car pTemplate="item">{{car.label}}</ng-template>
-                    </p-dropdown>
+                    @if (stores.length) {
+                      <p-dropdown [options]="stores" formControlName='store' filter="true">
+                        <ng-template let-item pTemplate="selectedItem">{{item.label}}</ng-template>
+                        <ng-template let-car pTemplate="item">{{car.label}}</ng-template>
+                      </p-dropdown>
+                    }
                   </div>
                 </div>
                 <div class="form-group">
@@ -69,7 +71,6 @@
                   </div>
                 </div>
               </div>
-
             </div>
             <div class="form-group" formGroupName='productSpecifications'>
               <div class="row">
@@ -92,7 +93,6 @@
                   </div>
                 </div>
               </div>
-
               <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                   <div class="form-group">
@@ -113,7 +113,6 @@
                   </div>
                 </div>
               </div>
-
             </div>
           </nb-card-body>
         </nb-card>
@@ -126,7 +125,7 @@
               <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-group">
                   <label for="finalPrice" class="col-form-label inputLabel">{{ 'PRICE.FINAL_PRICE' |
-                    translate}}</label>
+                  translate}}</label>
                   <div>
                     <input type="number" class="form-control inputText" id="finalPrice" formControlName='finalPrice'
                       (blur)="transformTotal()" placeholder="{{ 'PRICE.FINAL_PRICE' | translate}}" required>
@@ -137,7 +136,7 @@
                 <div class="form-group">
                   <label for="discountedPrice" class="col-form-label inputLabel">{{
                     'PRICE.DISCOUNTED_PRICE' |
-                    translate}}</label>
+                  translate}}</label>
                   <div>
                     <input type="number" class="form-control inputText" id="discountedPrice"
                       formControlName='discountedPrice' (blur)="transformTotal()"
@@ -145,7 +144,6 @@
                   </div>
                 </div>
               </div>
-
               <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-group">
                   <label class="col-form-label inputLabel">{{ 'Start Date' | translate}}</label>
@@ -167,9 +165,7 @@
                 </div>
               </div>
             </div>
-
           </nb-card-body>
-
         </nb-card>
         <nb-card class="nb-card inline-form-card">
           <nb-card-header class="nb-card-header">Images</nb-card-header>
@@ -193,10 +189,8 @@
           <nb-card-body class="nb-card-body">
             <div class="row">
               <div class="col-lg-11 col-md-11 col-sm-12 col-xs-12">
-
                 <div class="form-group">
                   <label class="col-form-label inputLabel">{{ 'Variation' | translate}}</label>
-
                   <p-dropdown [options]="stores" formControlName='store' filter="true">
                     <ng-template let-item pTemplate="selectedItem">{{item.label}}</ng-template>
                     <ng-template let-car pTemplate="item">{{car.label}}</ng-template>
@@ -248,8 +242,6 @@
                 </div>
               </div>
             </div>
-
-
           </nb-card-body>
         </nb-card>
       </div>
@@ -267,7 +259,6 @@
               </p-dropdown>
             </div>
           </div>
-
           <div class="form-group">
             <label for="owner" class="col-sm-10 col-form-label inputLabel">{{ 'INVENTORY.INVENTORY_OWNER' | translate}}</label>
             <div class="col-sm-12">
@@ -275,7 +266,6 @@
                 required>
             </div>
           </div>
-
           <div class="form-group">
             <label for="quantity" class="col-sm-10 col-form-label inputLabel">{{ 'PRODUCT.QUANTITY' | translate}}</label>
             <div class="col-sm-12">
@@ -283,7 +273,6 @@
                 ngxValidateNumber placeholder="{{ 'PRODUCT.QUANTITY' | translate}}" required>
             </div>
           </div>
-
           <div class="form-group">
             <label class="col-sm-10 col-form-label inputLabel">{{ 'PRODUCT.DATE_AVAILABLE' | translate}}</label>
             <div class="col-sm-12">
@@ -292,14 +281,14 @@
               <nb-datepicker #formpicker></nb-datepicker>
             </div>
           </div>
-
         </nb-card-body>
       </nb-card>
     </form>
   </div> -->
-    <!-- <div>
-        <ngx-prices-list *ngIf="inventory && inventory.prices" [prices]="inventory.prices"></ngx-prices-list>
-      </div> -->
-    <!-- </div> -->
-  </form>
+  <!-- <div>
+  <ngx-prices-list *ngIf="inventory && inventory.prices" [prices]="inventory.prices"></ngx-prices-list>
+</div> -->
+<!-- </div> -->
+</form>
+}
 </div>

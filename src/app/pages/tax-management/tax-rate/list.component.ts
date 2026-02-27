@@ -7,14 +7,14 @@ import { LocalDataSource } from 'ng2-smart-table';
 import { Router } from '@angular/router';
 // import { MalihuScrollbarService } from 'ngx-malihu-scrollbar';
 import { TranslateService } from '@ngx-translate/core';
-import { error } from '@angular/compiler/src/util';
 import { ShowcaseDialogComponent } from '../../shared/components/showcase-dialog/showcase-dialog.component';
 import { NbDialogService } from '@nebular/theme';
 import { ToastrService } from 'ngx-toastr';
 @Component({
-  selector: 'ngx-tax-rate-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+    selector: 'ngx-tax-rate-list',
+    templateUrl: './list.component.html',
+    styleUrls: ['./list.component.scss'],
+    standalone: false
 })
 export class TaxRateListComponent implements OnInit {
   @ViewChild('item', { static: false }) accordion;

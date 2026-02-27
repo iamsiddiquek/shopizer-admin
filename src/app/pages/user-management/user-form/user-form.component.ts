@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router, UrlTree, UrlSegment, UrlSegmentGroup, PRIMARY_OUTLET } from '@angular/router';
 
 import { ConfigService } from '../../shared/services/config.service';
@@ -13,12 +13,13 @@ import { StorageService } from '../../shared/services/storage.service';
 import { forkJoin } from 'rxjs';
 
 @Component({
-  selector: 'ngx-user-form',
-  templateUrl: './user-form.component.html',
-  styleUrls: ['./user-form.component.scss']
+    selector: 'ngx-user-form',
+    templateUrl: './user-form.component.html',
+    styleUrls: ['./user-form.component.scss'],
+    standalone: false
 })
 export class UserFormComponent implements OnInit {
-  form: FormGroup;
+  form: UntypedFormGroup;
   @Input() title: string;
   private _user: User;
 
@@ -93,7 +94,7 @@ export class UserFormComponent implements OnInit {
   loader = false;
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private configService: ConfigService,
     private userService: UserService,
     private storeService: StoreService,
@@ -236,7 +237,7 @@ export class UserFormComponent implements OnInit {
       this.loader = false;
     });
   }
-  checkPasswords(group: FormGroup) { // here we have the 'passwords' group
+  checkPasswords(group: UntypedFormGroup) { // here we have the 'passwords' group
     const password = group.get('password').value;
     const confirmPassword = group.get('repeatPassword').value;
     return password === confirmPassword ? null : { notSame: true }
@@ -305,7 +306,7 @@ export class UserFormComponent implements OnInit {
 
   save() {
     this.loader = true;
-    var store = this.form.value.store;
+    let store = this.form.value.store;
     if (!store) {
       store = this.store;
     }
@@ -332,6 +333,13 @@ export class UserFormComponent implements OnInit {
     });
     this.form.patchValue({ groups: newGroups });
     this.form.patchValue({ userName: this.form.value.emailAddress });
+
+    console.info('[UserForm] Saving user form', {
+      mode: this._user && this._user.id ? 'update' : 'create',
+      store,
+      email: this.form.value.emailAddress,
+    });
+
     if (this.form.value.groups.length === 0) {
       this.toastr.warning(this.translate.instant('COMMON.ADDING_USER_GROUPS_ERROR'));
       this.loader = false;
@@ -339,26 +347,42 @@ export class UserFormComponent implements OnInit {
     }
     if (this._user && this._user.id) {
       this.userService.updateUser(+this._user.id, this.form.value, store)
-        .subscribe(res => {
-          this.toastr.success(this.translate.instant('USER_FORM.USER_UPDATED'));
-          this.loader = false;
-        }, err => {
-          this.errorMessage = err.message;
-          this.toastr.error(this.errorMessage);
-          this.loader = false;
-          return;
+        .subscribe({
+          next: () => {
+            this.toastr.success(this.translate.instant('USER_FORM.USER_UPDATED'));
+            this.loader = false;
+          },
+          error: (err) => {
+            this.errorMessage = this.resolveErrorMessage(err);
+            console.error('[UserForm] Failed to update user', err);
+            this.toastr.error(this.errorMessage);
+            this.loader = false;
+          }
         });
     } else {
       this.userService.createUser(this.form.value, store)
-        .subscribe(res => {
-          this.loader = false;
-          this.toastr.success(this.translate.instant('USER_FORM.USER_CREATED'));
-          this.router.navigate(['pages/user-management/users']);
-        }, err => {
-          this.errorMessage = err.message;
-          this.toastr.error(this.errorMessage);
-          this.loader = false;
-          return;
+        .subscribe({
+          next: (res) => {
+            this.loader = false;
+
+            const message = res && res.message ? res.message : this.translate.instant('USER_FORM.USER_CREATED');
+            console.info('[UserForm] User created successfully', res);
+
+            this.router.navigate(['pages/user-management/users'], {
+              queryParams: {
+                created: '1',
+                store,
+                message,
+                createdEmail: this.form.value.emailAddress,
+              },
+            });
+          },
+          error: (err) => {
+            this.errorMessage = this.resolveErrorMessage(err);
+            console.error('[UserForm] Failed to create user', err);
+            this.toastr.error(this.errorMessage);
+            this.loader = false;
+          },
         });
     }
   }
@@ -383,7 +407,7 @@ export class UserFormComponent implements OnInit {
   }
 
   chooseMerchant(merchant) {
-    this.store = merchant;
+    this.store = merchant && merchant.code ? merchant.code : merchant;
     //this.checkRules(role);
   }
 
@@ -444,6 +468,14 @@ export class UserFormComponent implements OnInit {
   }
   goToBack() {
     this.router.navigate(['pages/user-management/users']);
+  }
+
+  private resolveErrorMessage(error: any): string {
+    return (
+      error && error.error && error.error.message
+      || error && error.message
+      || this.translate.instant('COMMON.SYSTEM_ERROR')
+    );
   }
 
 }

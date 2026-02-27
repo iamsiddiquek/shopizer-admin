@@ -5,9 +5,10 @@ import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  template: `
+    template: `
     <input type="checkbox" [checked]="value" (click)="clicked()"/>
   `,
+    standalone: false
 })
 export class ButtonRenderComponent {
   @Input() value: string | number;

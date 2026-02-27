@@ -5,7 +5,8 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
     selector: 'ngx-store-autocomplete',
     templateUrl: './store-autocomplete.html',
-    styleUrls: ['./store-autocomplete.scss']
+    styleUrls: ['./store-autocomplete.scss'],
+    standalone: false
 })
 export class storeAutoCompleteComponent implements OnInit {
 

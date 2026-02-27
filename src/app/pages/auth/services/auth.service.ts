@@ -24,6 +24,7 @@ export class AuthService {
   }
 
   logout() {
+    console.info('[AuthService] Logging out user and clearing session');
     this.tokenService.destroyToken();
     this.userService.destroyUserId();
     this.userService.roles = {
@@ -39,7 +40,7 @@ export class AuthService {
     };
     localStorage.removeItem('roles');
     localStorage.removeItem('merchant');
-    this.router.navigate(['auth']);
+    this.router.navigateByUrl('/auth/login');
   }
 
   refresh(): Observable<any> {

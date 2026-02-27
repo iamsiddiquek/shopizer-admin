@@ -10,9 +10,10 @@ import { environment } from '../../../environments/environment';
 
 
 @Component({
-  selector: 'ngx-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+    selector: 'ngx-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss'],
+    standalone: false
 })
 export class HomeComponent implements OnInit {
   loading = false;

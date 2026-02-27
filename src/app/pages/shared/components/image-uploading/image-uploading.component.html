@@ -32,27 +32,29 @@
 
 
   <div class="col-md-6 image_part">
-    <div *ngIf="images.length">
-      <!-- <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)"
+    @if (images.length) {
+      <div>
+        <!-- <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)"
         (onChangeOrder)="onChangeimage($images)">
         <div class="example-box" *ngFor="let image of images" cdkDrag><img [src]="image?.imageUrl" [alt]="image?.path">
         </div>
       </div> -->
       <!-- <div class="grid-container" cdkDropListOrientation="horizontal" cdkDropList (cdkDropListDropped)="drop($event)"
-        (onChangeOrder)="onChangeimage($images)">
-        <div *ngFor='let image of images' cdkDrag class="image-item">
-          <div class="grid-item square">
-            <img [src]="image?.imageUrl" [alt]="image?.path">
-            <span id="clickableDeleteIcon">
-              <span><i class="fas fa-times" (click)="removeImage(image)"></i></span>
-            </span>
-          </div>
+      (onChangeOrder)="onChangeimage($images)">
+      <div *ngFor='let image of images' cdkDrag class="image-item">
+        <div class="grid-item square">
+          <img [src]="image?.imageUrl" [alt]="image?.path">
+          <span id="clickableDeleteIcon">
+            <span><i class="fas fa-times" (click)="removeImage(image)"></i></span>
+          </span>
         </div>
-      </div> -->
-      <div class="item-container" cdkDropListGroup>
-        <div cdkDropList (cdkDropListDropped)="dropListDropped()" (cdkDropListEntered)="cdkDropListEntered($event)">
-        </div>
-        <div cdkDropList *ngFor="let image of images; trackBy: itemTrackBy" (cdkDropListDropped)="dropListDropped()"
+      </div>
+    </div> -->
+    <div class="item-container" cdkDropListGroup>
+      <div cdkDropList (cdkDropListDropped)="dropListDropped()" (cdkDropListEntered)="cdkDropListEntered($event)">
+      </div>
+      @for (image of images; track itemTrackBy($index, image)) {
+        <div cdkDropList (cdkDropListDropped)="dropListDropped()"
           (cdkDropListEntered)="cdkDropListEntered($event)">
           <div cdkDrag class="example-box">
             <img [src]="image?.imageUrl" [alt]="image?.path" width="250">
@@ -61,8 +63,10 @@
             </span>
           </div>
         </div>
-      </div>
+      }
     </div>
   </div>
+}
+</div>
 
 </div>

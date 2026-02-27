@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'ngx-categories',
-  templateUrl: './categories.component.html',
-  styleUrls: ['./categories.component.scss']
+    selector: 'ngx-categories',
+    templateUrl: './categories.component.html',
+    styleUrls: ['./categories.component.scss'],
+    standalone: false
 })
 export class CategoriesComponent implements OnInit {
 

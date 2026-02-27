@@ -10,9 +10,10 @@ import { StoreService } from '../../store-management/services/store.service';
 import { StorageService } from '../../shared/services/storage.service';
 import { TranslateService } from '@ngx-translate/core';
 @Component({
-  selector: 'page-table',
-  templateUrl: './page.component.html',
-  styleUrls: ['./page.component.scss'],
+    selector: 'page-table',
+    templateUrl: './page.component.html',
+    styleUrls: ['./page.component.scss'],
+    standalone: false
 })
 export class PageComponent {
   search_text: string = '';

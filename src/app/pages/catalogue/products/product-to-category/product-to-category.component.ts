@@ -12,7 +12,8 @@ import { Location } from '@angular/common';
 @Component({
     selector: 'ngx-product-to-category',
     templateUrl: './product-to-category.component.html',
-    styleUrls: ['./product-to-category.component.scss']
+    styleUrls: ['./product-to-category.component.scss'],
+    standalone: false
 })
 export class ProductToCategoryComponent implements OnInit {
 

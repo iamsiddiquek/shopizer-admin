@@ -9,9 +9,10 @@ import { environment } from '../../../../environments/environment';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'ngx-header',
-  styleUrls: ['./header.component.scss'],
-  templateUrl: './header.component.html',
+    selector: 'ngx-header',
+    styleUrls: ['./header.component.scss'],
+    templateUrl: './header.component.html',
+    standalone: false
 })
 export class HeaderComponent implements OnInit {
 
@@ -42,7 +43,6 @@ export class HeaderComponent implements OnInit {
     menuService.onItemClick().subscribe((el) => {
       if (el.item['tag'] === 'logout') {
         this.authService.logout();
-        this.router.navigate(['auth']);
       }
       if (el.item['tag'] === 'profile') {
         this.router.navigate(['pages/user-management/profile']);

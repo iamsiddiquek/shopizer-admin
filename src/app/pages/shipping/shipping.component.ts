@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 
 
 @Component({
-  selector: 'ngx-shipping',
-  templateUrl: './shipping.component.html',
+    selector: 'ngx-shipping',
+    templateUrl: './shipping.component.html',
+    standalone: false
 })
 
 export class ShippingComponent {

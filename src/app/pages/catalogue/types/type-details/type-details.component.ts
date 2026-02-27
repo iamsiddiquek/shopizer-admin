@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
 import { validators } from '../../../shared/validation/validators';
@@ -12,13 +12,14 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ConfigService } from '../../../shared/services/config.service';
 @Component({
-  selector: 'ngx-types',
-  templateUrl: './type-details.component.html',
-  styleUrls: ['./type-details.component.scss']
+    selector: 'ngx-types',
+    templateUrl: './type-details.component.html',
+    styleUrls: ['./type-details.component.scss'],
+    standalone: false
 })
 export class TypeDetailsComponent implements OnInit {
 
-  form: FormGroup;
+  form: UntypedFormGroup;
   loading: boolean = false;
   loaded: boolean = false;
   isReadonlyCode = false;
@@ -37,7 +38,7 @@ export class TypeDetailsComponent implements OnInit {
 
   constructor(
     private _sanitizer: DomSanitizer,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private translate: TranslateService,
     private router: Router,
     private dialogService: NbDialogService,
@@ -109,7 +110,7 @@ export class TypeDetailsComponent implements OnInit {
   }
 
   addFormArray() {
-    const control = <FormArray>this.form.controls.descriptions;
+    const control = <UntypedFormArray>this.form.controls.descriptions;
     this.languages.forEach(lang => {
       control.push(
         this.fb.group({
@@ -139,7 +140,7 @@ export class TypeDetailsComponent implements OnInit {
       if (desc.language === this.selectedLanguage.value) {
         this.type.descriptions.forEach((d, i) => {
           if(d.language === this.selectedLanguage.value) {
-            (<FormArray>this.form.get('descriptions')).at(index).patchValue({
+            (<UntypedFormArray>this.form.get('descriptions')).at(index).patchValue({
               language: d.language,
               name: d.name,
             });
@@ -207,8 +208,8 @@ export class TypeDetailsComponent implements OnInit {
     });
   }
 
-  get descriptions(): FormArray {
-    return <FormArray>this.form.get('descriptions');
+  get descriptions(): UntypedFormArray {
+    return <UntypedFormArray>this.form.get('descriptions');
   }
 
   checkCode(event) {

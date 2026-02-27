@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { LocalDataSource } from 'ng2-smart-table';
 import { CrudService } from '../../shared/services/crud.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -15,14 +15,15 @@ import { Description } from '../../shared/models/description';
 declare var jquery: any;
 declare var $: any;
 @Component({
-  selector: 'add-box',
-  templateUrl: './add-box.component.html',
-  styleUrls: ['./add-box.component.scss'],
+    selector: 'add-box',
+    templateUrl: './add-box.component.html',
+    styleUrls: ['./add-box.component.scss'],
+    standalone: false
 })
 export class AddBoxComponent implements OnInit {
   loader = false;
 
-  form: FormGroup;
+  form: UntypedFormGroup;
   content: any;
 
   languages = [];
@@ -64,7 +65,7 @@ export class AddBoxComponent implements OnInit {
   params = this.param();
   public scrollbarOptions = { axis: 'y', theme: 'minimal-dark' };
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private crudService: CrudService,
     public router: Router,
     private toastr: ToastrService,
@@ -122,7 +123,7 @@ export class AddBoxComponent implements OnInit {
   }
 
   private addFormArray() {
-    const control = <FormArray>this.form.controls.descriptions;
+    const control = <UntypedFormArray>this.form.controls.descriptions;
     this.languages.forEach(lang => {
       control.push(
         this.fb.group({
@@ -154,7 +155,7 @@ export class AddBoxComponent implements OnInit {
       if (this.content != null && this.content.descriptions) {
         this.content.descriptions.forEach((description) => {
           if (desc.language === description.language) {
-            (<FormArray>this.form.get('descriptions')).at(index).patchValue({
+            (<UntypedFormArray>this.form.get('descriptions')).at(index).patchValue({
               id: description.id,
               language: description.language,
               description: description.description,
@@ -288,8 +289,8 @@ export class AddBoxComponent implements OnInit {
     return this.form.get('code');
   }
 
-  get descriptions(): FormArray {
-    return <FormArray>this.form.get('descriptions');
+  get descriptions(): UntypedFormArray {
+    return <UntypedFormArray>this.form.get('descriptions');
   }
 
   get selectedLanguage() {

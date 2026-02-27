@@ -7,11 +7,11 @@ import { LocalDataSource } from 'ng2-smart-table';
 import { Router } from '@angular/router';
 // import { MalihuScrollbarService } from 'ngx-malihu-scrollbar';
 import { TranslateService } from '@ngx-translate/core';
-import { error } from '@angular/compiler/src/util';
 @Component({
-  selector: 'ngx-order-list',
-  templateUrl: './order-list.component.html',
-  styleUrls: ['./order-list.component.scss']
+    selector: 'ngx-order-list',
+    templateUrl: './order-list.component.html',
+    styleUrls: ['./order-list.component.scss'],
+    standalone: false
 })
 export class OrderListComponent implements OnInit {
   @ViewChild('item', { static: false }) accordion;
@@ -70,7 +70,8 @@ export class OrderListComponent implements OnInit {
 
       this.timeoutHandler = setTimeout(() => {
         if (change.action == 'filter') {
-          change.filter.filters.map((a) => {
+          const activeFilters = (change as any).filters ?? (change as any).filter?.filters ?? [];
+          activeFilters.map((a) => {
             if (a.field == "id") {
               this.params["id"] = a.search;
             } else if (a.field == "billingName") {

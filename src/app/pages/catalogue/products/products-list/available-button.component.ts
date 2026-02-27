@@ -5,7 +5,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  template: `<input type="checkbox" [checked]="value"  (click)="clicked() "/>`,
+    template: `<input type="checkbox" [checked]="value"  (click)="clicked() "/>`,
+    standalone: false
 })
 export class AvailableButtonComponent implements OnInit {
   @Input() value: boolean;

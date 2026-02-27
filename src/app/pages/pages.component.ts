@@ -6,14 +6,15 @@ import { ConnectionStatusService } from './shared/services/connection-status.ser
 import { NbToastRef, NbToastrService } from '@nebular/theme';
 import { Router } from '@angular/router';
 @Component({
-  selector: 'ngx-pages',
-  styleUrls: ['pages.component.scss'],
-  template: `
+    selector: 'ngx-pages',
+    styleUrls: ['pages.component.scss'],
+    template: `
     <ngx-sample-layout>
       <nb-menu [items]="menu"></nb-menu>
       <router-outlet></router-outlet>
     </ngx-sample-layout>
   `,
+    standalone: false
 })
 export class PagesComponent {
   menu;

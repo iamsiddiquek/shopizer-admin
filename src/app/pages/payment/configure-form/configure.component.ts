@@ -13,9 +13,10 @@ let braintreeData = require('../services/braintree.json');
 import { PaymentService } from '../services/payment.service';
 import { NbDateAdapterService } from '@nebular/theme';
 @Component({
-  selector: 'ngx-payment-configure',
-  templateUrl: './configure.component.html',
-  styleUrls: ['./configure.component.scss'],
+    selector: 'ngx-payment-configure',
+    templateUrl: './configure.component.html',
+    styleUrls: ['./configure.component.scss'],
+    standalone: false
 })
 export class ConfigureComponent implements OnInit {
 

@@ -8,9 +8,10 @@ import { ShowcaseDialogComponent } from '../../../shared/components/showcase-dia
 import { NbDialogService } from '@nebular/theme';
 import { ToastrService } from 'ngx-toastr';
 @Component({
-  selector: 'ngx-variations-list',
-  templateUrl: './variations.component.html',
-  styleUrls: ['./variations.component.scss']
+    selector: 'ngx-variations-list',
+    templateUrl: './variations.component.html',
+    styleUrls: ['./variations.component.scss'],
+    standalone: false
 })
 export class VariationsListComponent implements OnInit {
   source: LocalDataSource = new LocalDataSource();

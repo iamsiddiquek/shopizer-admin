@@ -12,9 +12,10 @@ import { LocalDataSource } from 'ng2-smart-table';
 import { ListingService } from '../../../shared/services/listing.service';
 
 @Component({
-  selector: 'ngx-types-list',
-  templateUrl: './types-list.component.html',
-  styleUrls: ['./types-list.component.scss']
+    selector: 'ngx-types-list',
+    templateUrl: './types-list.component.html',
+    styleUrls: ['./types-list.component.scss'],
+    standalone: false
 })
 export class TypesListComponent implements OnInit {
 

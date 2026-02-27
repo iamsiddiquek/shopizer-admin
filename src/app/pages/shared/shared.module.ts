@@ -3,8 +3,8 @@ import { CommonModule, CurrencyPipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { ThemeModule } from '../../@theme/theme.module';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
-import { NbSpinnerModule, NbTreeGridComponent, NbTreeGridModule } from '@nebular/theme';
+import { Ng2SmartTableComponent } from 'ng2-smart-table';
+import { NbSpinnerModule, NbTreeGridModule } from '@nebular/theme';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { FiveHundredComponent } from './components/five-hundred/five-hundred.component';
 import { TranslateModule } from '@ngx-translate/core';
@@ -41,16 +41,20 @@ import { DragDropModule } from "@angular/cdk/drag-drop";
     CommonModule,
     RouterModule,
     NbTreeGridModule,
-    Ng2SmartTableModule,
+    Ng2SmartTableComponent,
     ThemeModule,
     NbSpinnerModule,
     TranslateModule,
     TreeTableModule,
+    PickListModule,
+    DropdownModule,
+    AutoCompleteModule,
+    MultiSelectModule,
     FilePickerModule,
     DragDropModule
   ],
   exports: [
-    Ng2SmartTableModule,
+    Ng2SmartTableComponent,
     ThemeModule,
     NbSpinnerModule,
     TranslateModule,
@@ -63,7 +67,6 @@ import { DragDropModule } from "@angular/cdk/drag-drop";
     PaginatorComponent,
     BackButtonComponent,
     NbTreeGridModule,
-    NbTreeGridComponent,
     PickListModule,
     DropdownModule,
     AutoCompleteModule,
@@ -72,7 +75,6 @@ import { DragDropModule } from "@angular/cdk/drag-drop";
     // EqualValidator
   ],
   providers: [CurrencyPipe],
-  entryComponents: [ShowcaseDialogComponent],
 })
 export class SharedModule {
 }

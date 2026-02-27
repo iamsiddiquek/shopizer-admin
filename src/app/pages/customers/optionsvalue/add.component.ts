@@ -3,9 +3,10 @@ import { CrudService } from '../../shared/services/crud.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 @Component({
-  selector: 'ngx-value-add',
-  templateUrl: './add.component.html',
-  styleUrls: ['./add.component.scss']
+    selector: 'ngx-value-add',
+    templateUrl: './add.component.html',
+    styleUrls: ['./add.component.scss'],
+    standalone: false
 })
 export class ValueAddComponent implements OnInit {
   loadingList: boolean = false;

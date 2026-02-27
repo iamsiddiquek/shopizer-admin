@@ -10,9 +10,10 @@ import { ToastrService } from 'ngx-toastr';
 import { NbDialogService } from '@nebular/theme';
 import { ShowcaseDialogComponent } from '../../shared/components/showcase-dialog/showcase-dialog.component';
 @Component({
-  selector: 'boxes-table',
-  templateUrl: './boxes.component.html',
-  styleUrls: ['./boxes.component.scss'],
+    selector: 'boxes-table',
+    templateUrl: './boxes.component.html',
+    styleUrls: ['./boxes.component.scss'],
+    standalone: false
 })
 export class BoxesComponent {
   perPage = 10;

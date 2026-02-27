@@ -10,9 +10,10 @@ import { Image } from '../../../shared/models/image';
 import { ImageBrowserComponent } from '../../../../@theme/components/image-browser/image-browser.component';
 
 @Component({
-  selector: 'ngx-products-images',
-  templateUrl: './products-images.component.html',
-  styleUrls: ['./products-images.component.css']
+    selector: 'ngx-products-images',
+    templateUrl: './products-images.component.html',
+    styleUrls: ['./products-images.component.css'],
+    standalone: false
 })
 export class ProductsImagesComponent implements OnInit {
 

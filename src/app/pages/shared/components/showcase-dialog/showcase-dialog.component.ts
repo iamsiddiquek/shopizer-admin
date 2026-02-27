@@ -3,9 +3,10 @@ import { NbDialogRef } from '@nebular/theme';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'ngx-showcase-dialog',
-  templateUrl: 'showcase-dialog.component.html',
-  styleUrls: ['showcase-dialog.component.scss'],
+    selector: 'ngx-showcase-dialog',
+    templateUrl: 'showcase-dialog.component.html',
+    styleUrls: ['showcase-dialog.component.scss'],
+    standalone: false
 })
 export class ShowcaseDialogComponent {
 

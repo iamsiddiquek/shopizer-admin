@@ -8,9 +8,10 @@ import { NbDialogService } from '@nebular/theme';
 import { ShowcaseDialogComponent } from '../../shared/components/showcase-dialog/showcase-dialog.component';
 
 @Component({
-  template: `
+    template: `
     <input type="checkbox" [checked]="value" (click)="clicked()"/>
   `,
+    standalone: false
 })
 export class ButtonRenderUserComponent {
   @Input() value: string | number;

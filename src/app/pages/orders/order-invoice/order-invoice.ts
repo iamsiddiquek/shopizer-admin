@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { NbDialogRef } from '@nebular/theme';
 
 @Component({
-  selector: 'ngx-order-invoice',
-  templateUrl: 'order-invoice.html',
-  styleUrls: ['order-invoice.scss'],
+    selector: 'ngx-order-invoice',
+    templateUrl: 'order-invoice.html',
+    styleUrls: ['order-invoice.scss'],
+    standalone: false
 })
 export class OrderInvoiceComponent {
   orderData: any;

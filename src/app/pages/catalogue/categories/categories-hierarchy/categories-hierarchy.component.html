@@ -11,15 +11,15 @@
           {{ 'CATEGORY_HIERARCHY.DETAILS' | translate}}
         </p>
       </div>
-      <div *ngIf="nodes.length !== 0">
-
+      @if (nodes.length !== 0) {
+        <div>
           <tree-root #tree [nodes]="nodes" [options]="options" (moveNode)="onMoveNode($event)">
-              <ng-template #treeNodeTemplate let-node let-index="index">              
-                  <div>{{ node.data.name }}</div>
-              </ng-template>
+            <ng-template #treeNodeTemplate let-node let-index="index">
+              <div>{{ node.data.name }}</div>
+            </ng-template>
           </tree-root>
-
-      </div>
+        </div>
+      }
     </div>
   </nb-card-body>
 </nb-card>

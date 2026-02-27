@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { constants } from '../../shared/classes/constants';
 import { CustomersService } from '../services/customer.service';
@@ -7,13 +7,14 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'ngx-set-credentials',
-  templateUrl: './set-credentials.component.html',
-  styleUrls: ['./set-credentials.component.scss']
+    selector: 'ngx-set-credentials',
+    templateUrl: './set-credentials.component.html',
+    styleUrls: ['./set-credentials.component.scss'],
+    standalone: false
 })
 export class SetCredentialsComponent implements OnInit {
 
-  form: FormGroup;
+  form: UntypedFormGroup;
   loading = false;
   pwdPattern : string = constants.PASSWORD_PATTERN;
   customerID: any;
@@ -38,7 +39,7 @@ export class SetCredentialsComponent implements OnInit {
     emailAddress: ''
   }
 
-  constructor(private fb: FormBuilder,
+  constructor(private fb: UntypedFormBuilder,
     private toastr: ToastrService,
     private customersService: CustomersService,
     private translate: TranslateService,
@@ -74,7 +75,7 @@ export class SetCredentialsComponent implements OnInit {
       });
   }
 
-  checkPasswords(group: FormGroup) {
+  checkPasswords(group: UntypedFormGroup) {
     const pass = group.controls.newPassword.value;
     const confirmPass = group.controls.confirmNewPassword.value;
 

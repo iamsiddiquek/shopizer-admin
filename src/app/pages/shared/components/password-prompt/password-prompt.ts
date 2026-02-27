@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { NbDialogRef } from '@nebular/theme';
 
 @Component({
-  selector: 'ngx-password-prompt',
-  templateUrl: 'password-prompt.html',
-  styleUrls: ['password-prompt.scss'],
+    selector: 'ngx-password-prompt',
+    templateUrl: 'password-prompt.html',
+    styleUrls: ['password-prompt.scss'],
+    standalone: false
 })
 export class PasswordPromptComponent {
 

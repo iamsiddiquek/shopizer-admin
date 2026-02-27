@@ -10,7 +10,8 @@ import { AuthComponent } from './auth.component';
 const routes: Routes = [
   {
     path: '', component: AuthComponent, children: [
-      { path: '', component: LoginComponent },
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'forgot-password', component: ForgotPasswordComponent },
       // { path: 'user/:id/reset/:id', component: ResetPasswordComponent },

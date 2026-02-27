@@ -22,7 +22,9 @@
                   <div class="form-group">
                     <label class="label inputLabel">Customer Option <span>*</span></label>
                     <nb-select placeholder="Select customer option" outline shape="rectangle" required>
-                      <nb-option *ngFor="let text of displayText" [value]="text.name">{{ text.name }}</nb-option>
+                      @for (text of displayText; track text) {
+                        <nb-option [value]="text.name">{{ text.name }}</nb-option>
+                      }
                     </nb-select>
                   </div>
                 </div>
@@ -30,7 +32,9 @@
                   <div class="form-group">
                     <label class="label inputLabel">Customer Option value <span>*</span></label>
                     <nb-select placeholder="Select customer value" outline shape="rectangle" required>
-                      <nb-option *ngFor="let text of displayText" [value]="text.name">{{ text.name }}</nb-option>
+                      @for (text of displayText; track text) {
+                        <nb-option [value]="text.name">{{ text.name }}</nb-option>
+                      }
                     </nb-select>
                   </div>
                 </div>

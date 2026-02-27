@@ -11,7 +11,7 @@ import { CategoryFormComponent } from './category-form/category-form.component';
 import { CategoryDetailComponent } from './category-detail/category-detail.component';
 import { NgxSummernoteModule } from 'ngx-summernote';
 import { NbDialogModule } from '@nebular/theme';
-import { TreeModule, TreeDraggedElement } from 'angular-tree-component';
+import { TreeModule, TreeDraggedElement } from '@ali-hm/angular-tree-component';
 
 
 @NgModule({
@@ -31,7 +31,6 @@ import { TreeModule, TreeDraggedElement } from 'angular-tree-component';
     NbDialogModule.forChild(),
     TreeModule
   ],
-  entryComponents: [ButtonRenderComponent],
   providers: [TreeDraggedElement]
 })
 

@@ -18,9 +18,6 @@ import { CustomModule } from '../custom-component/custom.module';
     TaxRateListComponent,
     TaxRateAddComponent
   ],
-  entryComponents: [
-
-  ],
   imports: [
     TaxRoutingModule,
     SharedModule,

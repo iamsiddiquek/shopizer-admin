@@ -23,9 +23,10 @@ export interface TreeNode {
 }
 
 @Component({
-  selector: 'ngx-product-attributes',
-  templateUrl: './product-attributes.component.html',
-  styleUrls: ['./product-attributes.component.scss']
+    selector: 'ngx-product-attributes',
+    templateUrl: './product-attributes.component.html',
+    styleUrls: ['./product-attributes.component.scss'],
+    standalone: false
 })
 export class ProductAttributesComponent implements OnInit {
 

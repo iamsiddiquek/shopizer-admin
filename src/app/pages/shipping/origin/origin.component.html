@@ -2,18 +2,22 @@
 
   <nb-card-header class="main_header">
     <h1 class="page_title">{{'SHIPPING.ORIGIN' | translate}}</h1>
-    <div class="content_spacing" *ngIf="isSuperAdmin">
-      <div class="select_store">
-        <!-- <ngx-store-autocomplete (onStore)="onSelectStore($event)"></ngx-store-autocomplete> -->
-        <p-dropdown *ngIf="stores.length> 0" [options]="stores" filter="true" (onChange)="onSelectStore($event)">
-          <ng-template let-item pTemplate="selectedItem">{{item.label}}</ng-template>
-          <ng-template let-car pTemplate="item">{{car.label}}</ng-template>
-        </p-dropdown>
+    @if (isSuperAdmin) {
+      <div class="content_spacing">
+        <div class="select_store">
+          <!-- <ngx-store-autocomplete (onStore)="onSelectStore($event)"></ngx-store-autocomplete> -->
+          @if (stores.length> 0) {
+            <p-dropdown [options]="stores" filter="true" (onChange)="onSelectStore($event)">
+              <ng-template let-item pTemplate="selectedItem">{{item.label}}</ng-template>
+              <ng-template let-car pTemplate="item">{{car.label}}</ng-template>
+            </p-dropdown>
+          }
+        </div>
       </div>
-    </div>
+    }
     <div class="content_spacing">
       <button type="submit" nbButton class="success_button" (click)="onSubmit()" [disabled]="!originForm.form.valid">{{'COMMON.SAVE'
-        | translate }}</button>
+      | translate }}</button>
     </div>
   </nb-card-header>
 
@@ -49,28 +53,38 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <div class="form-group">
                     <label class="label inputLabel">{{'ORDER_FORM.COUNTRY' | translate}}<span>*</span></label>
-                    <nb-select *ngIf="countries.length > 0" placeholder="{{'ORDER_FORM.SELECT_COUNTRY' | translate}}"
-                      outline shape="rectangle" [(ngModel)]="shipOriginForm.country" name="country" (selectedChange)="onCountryChange($event)"
-                      class="select_fields" required>
-                      <nb-option *ngFor="let country of countries" [value]="country.countryCode">{{ country.label }}
-                      </nb-option>
-                    </nb-select>
+                    @if (countries.length > 0) {
+                      <nb-select placeholder="{{'ORDER_FORM.SELECT_COUNTRY' | translate}}"
+                        outline shape="rectangle" [(ngModel)]="shipOriginForm.country" name="country" (selectedChange)="onCountryChange($event)"
+                        class="select_fields" required>
+                        @for (country of countries; track country) {
+                          <nb-option [value]="country.countryCode">{{ country.label }}
+                          </nb-option>
+                        }
+                      </nb-select>
+                    }
                   </div>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                  <div class="form-group" *ngIf="states.length > 0">
-                    <label class="label inputLabel">{{'ORDER_FORM.STATE' | translate}}<span>*</span></label>
-                    <nb-select placeholder="{{'ORDER_FORM.SELECT_STATE' | translate}}" class="select_fields" outline
-                      shape="rectangle" [(ngModel)]="shipOriginForm.stateProvince" name="stateProvince" required>
-                      <nb-option *ngFor="let state of states" [value]="state.stateCode">{{ state.label }}
-                      </nb-option>
-                    </nb-select>
-                  </div>
-                  <div class="form-group" *ngIf="states.length == 0">
-                    <label class="label inputLabel">{{'ORDER_FORM.STATE' | translate}}<span>*</span></label>
-                    <input type="text" class="form-control inputText" placeholder="{{'ORDER_FORM.ENTER_STATE' | translate}}"
-                      [(ngModel)]="shipOriginForm.stateProvince" name="stateProvince" required>
-                  </div>
+                  @if (states.length > 0) {
+                    <div class="form-group">
+                      <label class="label inputLabel">{{'ORDER_FORM.STATE' | translate}}<span>*</span></label>
+                      <nb-select placeholder="{{'ORDER_FORM.SELECT_STATE' | translate}}" class="select_fields" outline
+                        shape="rectangle" [(ngModel)]="shipOriginForm.stateProvince" name="stateProvince" required>
+                        @for (state of states; track state) {
+                          <nb-option [value]="state.stateCode">{{ state.label }}
+                          </nb-option>
+                        }
+                      </nb-select>
+                    </div>
+                  }
+                  @if (states.length == 0) {
+                    <div class="form-group">
+                      <label class="label inputLabel">{{'ORDER_FORM.STATE' | translate}}<span>*</span></label>
+                      <input type="text" class="form-control inputText" placeholder="{{'ORDER_FORM.ENTER_STATE' | translate}}"
+                        [(ngModel)]="shipOriginForm.stateProvince" name="stateProvince" required>
+                    </div>
+                  }
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <div class="form-group">

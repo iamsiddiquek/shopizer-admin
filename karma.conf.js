@@ -26,15 +26,23 @@ module.exports = function (config) {
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
+    browserNoActivityTimeout: 120000,
+    browserDisconnectTimeout: 20000,
+    browserDisconnectTolerance: 2,
+    failOnEmptyTestSuite: false,
     autoWatch: true,
     browsers: ['Chrome'],
     customLaunchers: {
       Chrome_travis_ci: {
         base: 'Chrome',
         flags: ['--no-sandbox']
+      },
+      ChromeHeadlessCI: {
+        base: 'ChromeHeadless',
+        flags: ['--no-sandbox', '--disable-dev-shm-usage', '--disable-gpu']
       }
     },
-    singleRun: false
+    singleRun: false,
   };
 
   if (process.env.TRAVIS) {

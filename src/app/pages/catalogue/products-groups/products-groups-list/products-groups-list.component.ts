@@ -6,9 +6,10 @@ import { StorageService } from '../../../shared/services/storage.service';
 import { forkJoin } from 'rxjs';
 
 @Component({
-  selector: 'ngx-products-groups-list',
-  templateUrl: './products-groups-list.component.html',
-  styleUrls: ['./products-groups-list.component.scss']
+    selector: 'ngx-products-groups-list',
+    templateUrl: './products-groups-list.component.html',
+    styleUrls: ['./products-groups-list.component.scss'],
+    standalone: false
 })
 export class ProductsGroupsListComponent implements OnInit {
   availableList = [];

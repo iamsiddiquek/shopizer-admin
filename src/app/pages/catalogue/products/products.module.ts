@@ -62,7 +62,6 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     ProductDiscountComponent,
     ProductOrderingComponent,
   ],
-  entryComponents: [AvailableButtonComponent, AttributeFormComponent, ProductPropertyForm],
   imports: [
     ProductsRoutingModule,
     InventoryRoutingModule,

@@ -3,8 +3,6 @@ import { Injectable } from '@angular/core';
 import { CrudService } from '../../shared/services/crud.service';
 import { Observable } from 'rxjs';
 import { StorageService } from '../../shared/services/storage.service';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Store } from '../models/store';
 
 @Injectable({
   providedIn: 'root'

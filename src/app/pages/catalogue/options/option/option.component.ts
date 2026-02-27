@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 import { ConfigService } from '../../../shared/services/config.service';
 import { Option } from '../models/option';
@@ -10,12 +10,13 @@ import { TranslateService } from '@ngx-translate/core';
 import { validators } from '../../../shared/validation/validators';
 
 @Component({
-  selector: 'ngx-option',
-  templateUrl: './option.component.html',
-  styleUrls: ['./option.component.scss']
+    selector: 'ngx-option',
+    templateUrl: './option.component.html',
+    styleUrls: ['./option.component.scss'],
+    standalone: false
 })
 export class OptionComponent implements OnInit {
-  form: FormGroup;
+  form: UntypedFormGroup;
   loader = false;
   loadingInfo: boolean = false;
   option = new Option();
@@ -28,7 +29,7 @@ export class OptionComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private configService: ConfigService,
     private optionService: OptionService,
     private toastr: ToastrService,
@@ -66,8 +67,8 @@ export class OptionComponent implements OnInit {
     return this.form.get('selectedLanguage');
   }
 
-  get descriptions(): FormArray {
-    return <FormArray>this.form.get('descriptions');
+  get descriptions(): UntypedFormArray {
+    return <UntypedFormArray>this.form.get('descriptions');
   }
 
   get code() {
@@ -84,7 +85,7 @@ export class OptionComponent implements OnInit {
   }
 
   addFormArray() {
-    const control = <FormArray>this.form.controls.descriptions;
+    const control = <UntypedFormArray>this.form.controls.descriptions;
     //console.log('Here ' + JSON.stringify(this.languages));
     this.languages.forEach(lang => {
       control.push(
@@ -111,7 +112,7 @@ export class OptionComponent implements OnInit {
       this.option.descriptions.forEach((description) => {
         //console.log('Comparing ' + desc.language + ' - ' + description.language);
         if (desc.language === description.language) {
-          (<FormArray>this.form.get('descriptions')).at(index).patchValue({
+          (<UntypedFormArray>this.form.get('descriptions')).at(index).patchValue({
             language: description.language,
             name: description.name,
           });

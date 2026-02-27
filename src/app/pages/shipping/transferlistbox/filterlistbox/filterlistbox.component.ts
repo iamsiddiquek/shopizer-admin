@@ -13,9 +13,10 @@ import {
 } from "@angular/core";
 
 @Component({
-  selector: "app-filterlistbox",
-  templateUrl: "./filterlistbox.component.html",
-  styleUrls: ["./filterlistbox.component.scss"],
+    selector: "app-filterlistbox",
+    templateUrl: "./filterlistbox.component.html",
+    styleUrls: ["./filterlistbox.component.scss"],
+    standalone: false
 })
 export class FilterlistboxComponent implements OnInit, AfterViewInit {
   @ViewChildren("option") options: QueryList<ElementRef>;

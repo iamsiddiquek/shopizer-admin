@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 
 //import { NgxEchartsModule } from 'ngx-echarts';
 //import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { ChartModule } from 'angular2-chartjs';
 import { HomeComponent } from './home.component';
 import { SharedModule } from '../shared/shared.module';
 import { HomeRoutingModule } from './home-routing.module';
@@ -77,7 +76,6 @@ import {
   ],
   imports: [
     SharedModule,
-    ChartModule,
     //NgxEchartsModule,
     //NgxChartsModule,
     HomeRoutingModule,

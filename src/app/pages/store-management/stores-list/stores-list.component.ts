@@ -13,9 +13,10 @@ import { ShowcaseDialogComponent } from '../../shared/components/showcase-dialog
 import { ListingService } from '../../shared/services/listing.service';
 
 @Component({
-  selector: 'ngx-stores-list',
-  templateUrl: './stores-list.component.html',
-  styleUrls: ['./stores-list.component.scss']
+    selector: 'ngx-stores-list',
+    templateUrl: './stores-list.component.html',
+    styleUrls: ['./stores-list.component.scss'],
+    standalone: false
 })
 export class StoresListComponent implements OnInit {
   source: LocalDataSource = new LocalDataSource();

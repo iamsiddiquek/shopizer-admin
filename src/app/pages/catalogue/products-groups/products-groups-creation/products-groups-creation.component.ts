@@ -1,23 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 import { OptionService } from '../../options/services/option.service';
 import { OptionValuesService } from '../../options/services/option-values.service';
 
 @Component({
-  selector: 'ngx-products-groups-creation',
-  templateUrl: './products-groups-creation.component.html',
-  styleUrls: ['./products-groups-creation.component.scss']
+    selector: 'ngx-products-groups-creation',
+    templateUrl: './products-groups-creation.component.html',
+    styleUrls: ['./products-groups-creation.component.scss'],
+    standalone: false
 })
 export class ProductsGroupsCreationComponent implements OnInit {
-  form: FormGroup;
+  form: UntypedFormGroup;
   loader = false;
 
   options = [];
   optionValues = [];
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private optionService: OptionService,
     private optionValuesService: OptionValuesService,
     ) {

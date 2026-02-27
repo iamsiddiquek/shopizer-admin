@@ -6,9 +6,10 @@ import { StoreService } from '../services/store.service';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'ngx-retailer-list',
-  templateUrl: './retailer-list.component.html',
-  styleUrls: ['./retailer-list.component.scss']
+    selector: 'ngx-retailer-list',
+    templateUrl: './retailer-list.component.html',
+    styleUrls: ['./retailer-list.component.scss'],
+    standalone: false
 })
 export class RetailerListComponent implements OnInit {
   source: LocalDataSource = new LocalDataSource();

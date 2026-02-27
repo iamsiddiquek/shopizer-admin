@@ -12,9 +12,10 @@ let weightBased = require('../services/weightbased.json');
 import { SharedService } from '../services/shared.service';
 
 @Component({
-  selector: 'ngx-shipping-configure',
-  templateUrl: './configure.component.html',
-  styleUrls: ['./configure.component.scss'],
+    selector: 'ngx-shipping-configure',
+    templateUrl: './configure.component.html',
+    styleUrls: ['./configure.component.scss'],
+    standalone: false
 })
 export class ShippingConfigureComponent implements OnInit {
 

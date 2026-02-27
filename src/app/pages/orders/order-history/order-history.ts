@@ -2,9 +2,10 @@ import { Component, } from '@angular/core';
 import { NbDialogRef } from '@nebular/theme';
 import * as moment from 'moment';
 @Component({
-  selector: 'ngx-order-history',
-  templateUrl: 'order-history.html',
-  styleUrls: ['order-history.scss'],
+    selector: 'ngx-order-history',
+    templateUrl: 'order-history.html',
+    styleUrls: ['order-history.scss'],
+    standalone: false
 })
 export class OrderHistoryComponent {
   historyData: Array<any>;

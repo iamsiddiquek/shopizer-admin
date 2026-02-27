@@ -21,17 +21,19 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="item" *ngFor="let history of historyData">
-          <td>
-            {{history.orderStatus}}
-          </td>
-          <td style="text-align:center">
-            {{moment(history.date).format('yyyy-DD-MM')}}
-          </td>
-          <td>
-            {{history.comments}}
-          </td>
-        </tr>
+        @for (history of historyData; track history) {
+          <tr class="item">
+            <td>
+              {{history.orderStatus}}
+            </td>
+            <td style="text-align:center">
+              {{moment(history.date).format('yyyy-DD-MM')}}
+            </td>
+            <td>
+              {{history.comments}}
+            </td>
+          </tr>
+        }
       </tbody>
     </table>
   </div>

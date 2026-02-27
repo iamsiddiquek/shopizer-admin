@@ -10,9 +10,10 @@ import { InventoryService } from '../../services/inventory.service';
 import { ShowcaseDialogComponent } from '../../../../shared/components/showcase-dialog/showcase-dialog.component';
 
 @Component({
-  selector: 'ngx-prices-list',
-  templateUrl: './prices-list.component.html',
-  styleUrls: ['./prices-list.component.scss']
+    selector: 'ngx-prices-list',
+    templateUrl: './prices-list.component.html',
+    styleUrls: ['./prices-list.component.scss'],
+    standalone: false
 })
 export class PricesListComponent implements OnInit {
   @Input() prices;

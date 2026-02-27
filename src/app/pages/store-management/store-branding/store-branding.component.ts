@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { StoreService } from '../services/store.service';
 import { Logo } from '../models/logo';
@@ -9,9 +9,10 @@ import { forkJoin } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'ngx-store-branding',
-  templateUrl: './store-branding.component.html',
-  styleUrls: ['./store-branding.component.scss']
+    selector: 'ngx-store-branding',
+    templateUrl: './store-branding.component.html',
+    styleUrls: ['./store-branding.component.scss'],
+    standalone: false
 })
 export class StoreBrandingComponent implements OnInit {
   store;
@@ -46,13 +47,13 @@ export class StoreBrandingComponent implements OnInit {
   });
   logoFile: any;
   logo: Logo;
-  form: FormGroup;
+  form: UntypedFormGroup;
   showRemoveButton = false;
 
 
   constructor(
     private storeService: StoreService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private toastr: ToastrService,
     private translate: TranslateService,
     private router: Router,
@@ -184,7 +185,7 @@ export class StoreBrandingComponent implements OnInit {
   }
 
   fillForm(socialNetworksArray) {
-    const control = <FormArray>this.form.controls.socialNetworks;
+    const control = <UntypedFormArray>this.form.controls.socialNetworks;
     socialNetworksArray.forEach(el => {
       control.push(
         this.formBuilder.group({
@@ -198,8 +199,8 @@ export class StoreBrandingComponent implements OnInit {
     });
   }
 
-  get socialNetworks(): FormArray {
-    return <FormArray>this.form.get('socialNetworks');
+  get socialNetworks(): UntypedFormArray {
+    return <UntypedFormArray>this.form.get('socialNetworks');
   }
 
   saveNetworks() {

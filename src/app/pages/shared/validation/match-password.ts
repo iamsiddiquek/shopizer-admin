@@ -6,7 +6,8 @@ import { Validator, AbstractControl, NG_VALIDATORS } from '@angular/forms';
     selector: '[validateEqual][formControlName],[validateEqual][formControl],[validateEqual][ngModel]',
     providers: [
         { provide: NG_VALIDATORS, useExisting: forwardRef(() => MatchPassword), multi: true }
-    ]
+    ],
+    standalone: false
 })
 export class MatchPassword implements Validator {
     constructor(@Attribute('validateEqual') public validateEqual: string,

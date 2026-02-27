@@ -2,11 +2,11 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { SharedService } from '../services/shared.service';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { error } from '@angular/compiler/src/util';
 @Component({
-  selector: 'ngx-shipping-methods',
-  templateUrl: './methods.component.html',
-  styleUrls: ['./methods.component.scss']
+    selector: 'ngx-shipping-methods',
+    templateUrl: './methods.component.html',
+    styleUrls: ['./methods.component.scss'],
+    standalone: false
 })
 export class ShippingMethodsComponent implements OnInit {
   @ViewChild('item', { static: false }) accordion;

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { ContentRoutingModule, routedComponents } from './content-routing.module';
 import { SharedModule } from '../shared/shared.module';
-// import { ngfModule } from 'angular-file';
-import { QueryBuilderModule } from "angular2-query-builder";
+import { ngfModule } from 'angular-file';
+import { NgxAngularQueryBuilderModule as QueryBuilderModule } from "angular2-query-builder";
 import { NbDialogModule } from '@nebular/theme';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { LightboxModule } from 'ngx-lightbox';
@@ -17,7 +17,7 @@ import { CustomModule } from '../custom-component/custom.module';
   imports: [
     ContentRoutingModule,
     SharedModule,
-    // ngfModule,
+    ngfModule,
     FileManagerModule,
     QueryBuilderModule,
     NbDialogModule.forChild(),

@@ -4,9 +4,10 @@ import { ActivatedRoute } from '@angular/router';
 import { CategoryService } from '../services/category.service';
 
 @Component({
-  selector: 'ngx-category-detail',
-  templateUrl: './category-detail.component.html',
-  styleUrls: ['./category-detail.component.scss']
+    selector: 'ngx-category-detail',
+    templateUrl: './category-detail.component.html',
+    styleUrls: ['./category-detail.component.scss'],
+    standalone: false
 })
 export class CategoryDetailComponent implements OnInit {
   category: any = {};

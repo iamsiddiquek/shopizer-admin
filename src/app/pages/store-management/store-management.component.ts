@@ -4,9 +4,10 @@ import { TranslateService } from '@ngx-translate/core';
 import { StorageService } from '../shared/services/storage.service';
 
 @Component({
-  selector: 'ngx-store-management',
-  templateUrl: './store-management.component.html',
-  styleUrls: ['./store-management.component.scss']
+    selector: 'ngx-store-management',
+    templateUrl: './store-management.component.html',
+    styleUrls: ['./store-management.component.scss'],
+    standalone: false
 })
 export class StoreManagementComponent implements OnInit, DoCheck {
   path = 'Store';

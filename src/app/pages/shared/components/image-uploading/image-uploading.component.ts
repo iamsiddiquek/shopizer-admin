@@ -29,9 +29,10 @@ import { ViewportRuler } from '@angular/cdk/overlay';
 import { UserService } from "../../../../@core/mock/users.service";
 
 @Component({
-  selector: "ngx-image-uploading",
-  templateUrl: "./image-uploading.component.html",
-  styleUrls: ["./image-uploading.component.scss"],
+    selector: "ngx-image-uploading",
+    templateUrl: "./image-uploading.component.html",
+    styleUrls: ["./image-uploading.component.scss"],
+    standalone: false
 })
 export class ImageUploadingComponent implements OnInit {
   @ViewChild("uploader", { static: false }) uploader: FilePickerComponent;

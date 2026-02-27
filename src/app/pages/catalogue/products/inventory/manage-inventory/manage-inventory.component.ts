@@ -12,9 +12,10 @@ import { StorageService } from '../../../../shared/services/storage.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'ngx-manage-inventory',
-  templateUrl: './manage-inventory.component.html',
-  styleUrls: ['./manage-inventory.component.scss']
+    selector: 'ngx-manage-inventory',
+    templateUrl: './manage-inventory.component.html',
+    styleUrls: ['./manage-inventory.component.scss'],
+    standalone: false
 })
 export class ManageInventoryComponent implements OnInit {
 

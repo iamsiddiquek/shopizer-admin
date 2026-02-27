@@ -6,9 +6,10 @@ import { LocalDataSource } from 'ng2-smart-table';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'ngx-retailer-stores',
-  templateUrl: './retailer-stores.component.html',
-  styleUrls: ['./retailer-stores.component.scss']
+    selector: 'ngx-retailer-stores',
+    templateUrl: './retailer-stores.component.html',
+    styleUrls: ['./retailer-stores.component.scss'],
+    standalone: false
 })
 export class RetailerStoresComponent implements OnInit {
   source: LocalDataSource = new LocalDataSource();

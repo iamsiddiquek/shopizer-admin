@@ -5,9 +5,10 @@ import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'ngx-reset',
-  templateUrl: './reset.component.html',
-  styleUrls: ['./reset.component.scss']
+    selector: 'ngx-reset',
+    templateUrl: './reset.component.html',
+    styleUrls: ['./reset.component.scss'],
+    standalone: false
 })
 export class ResetPasswordComponent implements OnInit {
   errorMessage = '';

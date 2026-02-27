@@ -6,25 +6,18 @@
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
-    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es2015",
+    "target": "ES2022",
     "typeRoots": [
       "node_modules/@types"
     ],
-    "lib": [
-      "es2017",
-      "dom"
-    ],
-    "plugins": [
-      {
-        "name": "tslint-language-service"
-      }
-    ]
+    "plugins": [],
+    "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
-    "enableIvy": false,
-    "strictTemplates": true
+    "strictTemplates": false
   }
 }

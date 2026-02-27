@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { QueryBuilderConfig } from 'angular2-query-builder';
 import { Router } from '@angular/router';
 import { SharedService } from '../services/shared.service';
-import { error } from '@angular/compiler/src/util';
 import { StoreService } from '../../store-management/services/store.service';
 import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 @Component({
     selector: 'ngx-rules',
     templateUrl: './rules.component.html',
-    styleUrls: ['./rules.component.scss']
+    styleUrls: ['./rules.component.scss'],
+    standalone: false
 })
 export class RulesComponent implements OnInit {
     query = {

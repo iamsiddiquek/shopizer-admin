@@ -8,9 +8,10 @@ import { ProductService } from '../../products/services/product.service';
 import { CategoryService } from '../../categories/services/category.service';
 
 @Component({
-  selector: 'ngx-product-to-catalogue',
-  templateUrl: './product-to-catalogue.component.html',
-  styleUrls: ['./product-to-catalogue.component.scss']
+    selector: 'ngx-product-to-catalogue',
+    templateUrl: './product-to-catalogue.component.html',
+    styleUrls: ['./product-to-catalogue.component.scss'],
+    standalone: false
 })
 export class ProductToCatalogueComponent implements OnInit {
   availableList = [];

@@ -1,5 +1,9 @@
 
 
-<div *ngIf="loading" class="loading-block" [nbSpinner]="loading" nbSpinnerSize="large" nbSpinnerStatus="primary"></div>
-<ngx-category-form *ngIf="category.id" [category]="category"></ngx-category-form>
+@if (loading) {
+  <div class="loading-block" [nbSpinner]="loading" nbSpinnerSize="large" nbSpinnerStatus="primary"></div>
+}
+@if (category.id) {
+  <ngx-category-form [category]="category"></ngx-category-form>
+}
 

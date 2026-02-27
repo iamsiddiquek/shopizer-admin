@@ -1,15 +1,19 @@
 <div class="inner_pages catalouge_create_page">
 
   <nb-card-header class="main_header">
-    <h1 class="page_title" *ngIf="!catalog">{{ 'COMPONENTS.CREATE_CATALOGUE' | translate}}</h1>
-    <h1 class="page_title" *ngIf="catalog">{{ 'COMPONENTS.CATALOGUE' | translate}} </h1>
+    @if (!catalog) {
+      <h1 class="page_title">{{ 'COMPONENTS.CREATE_CATALOGUE' | translate}}</h1>
+    }
+    @if (catalog) {
+      <h1 class="page_title">{{ 'COMPONENTS.CATALOGUE' | translate}} </h1>
+    }
     <div class="content_spacing">
       <button type="button" nbButton class="cancel_button" (click)="goToback()">{{ 'ORDER_FORM.CANCLE'
-        | translate}}</button>
+      | translate}}</button>
     </div>
     <div class="content_spacing">
       <button type="button" nbButton class="success_button" (click)="save()" [nbSpinner]="loader" nbSpinnerSize="large"
-        nbSpinnerStatus="control">{{ ( !loader ? 'COMMON.SAVE' : '' ) | translate }}</button>
+      nbSpinnerStatus="control">{{ ( !loader ? 'COMMON.SAVE' : '' ) | translate }}</button>
     </div>
   </nb-card-header>
 
@@ -25,17 +29,25 @@
             <input type="text" class="form-control inputText" id="code" formControlName='code'
               (change)="checkCode($event)" placeholder="{{ 'COMMON.CODE' | translate}}" [readOnly]="catalog?.id"
               required>
-            <div class="err-message" *ngIf="(code.dirty || code.touched) && code.invalid && code">
-              <span *ngIf="code.errors.required">
-                {{ 'COMMON.CODE_REQUIRED' | translate}}
+            @if ((code.dirty || code.touched) && code.invalid && code) {
+              <div class="err-message">
+                @if (code.errors.required) {
+                  <span>
+                    {{ 'COMMON.CODE_REQUIRED' | translate}}
+                  </span>
+                }
+                @if (code.errors.pattern) {
+                  <span>
+                    {{ 'COMMON.ALPHA_DECIMAL_RULE' | translate}}
+                  </span>
+                }
+              </div>
+            }
+            @if (!isCodeUnique) {
+              <span class="err-message">
+                {{ 'COMMON.CODE_EXISTS' | translate}}
               </span>
-              <span *ngIf="code.errors.pattern">
-                {{ 'COMMON.ALPHA_DECIMAL_RULE' | translate}}
-              </span>
-            </div>
-            <span *ngIf="!isCodeUnique" class="err-message">
-              {{ 'COMMON.CODE_EXISTS' | translate}}
-            </span>
+            }
           </div>
         </div>
 
@@ -49,23 +61,25 @@
       </nb-card-body>
     </nb-card>
 
-    <nb-card class="nb-card inline-form-card" *ngIf="nodes.length !== 0">
-      <nb-card-body class="nb-card-body">
-        <p>{{ 'CATALOG.CATALOG_CONTENT' | translate}}</p>
-        <!--
-              <tree-root #tree [nodes]="category" [options]="options" (moveNode)="onMoveNode($event)">
-                  <ng-template #treeNodeTemplate let-node let-index="index">              
-                      <div>{{ node.description.name }}</div>
-                  </ng-template>
-              </tree-root>
-            -->
-      </nb-card-body>
-    </nb-card>
+    @if (nodes.length !== 0) {
+      <nb-card class="nb-card inline-form-card">
+        <nb-card-body class="nb-card-body">
+          <p>{{ 'CATALOG.CATALOG_CONTENT' | translate}}</p>
+          <!--
+          <tree-root #tree [nodes]="category" [options]="options" (moveNode)="onMoveNode($event)">
+            <ng-template #treeNodeTemplate let-node let-index="index">
+              <div>{{ node.description.name }}</div>
+            </ng-template>
+          </tree-root>
+          -->
+        </nb-card-body>
+      </nb-card>
+    }
 
 
 
   </form>
-  <!-- </div> -->
+<!-- </div> -->
 
 
 

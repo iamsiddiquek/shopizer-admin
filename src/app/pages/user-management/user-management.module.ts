@@ -31,7 +31,6 @@ import { CustomModule } from '../custom-component/custom.module';
     SharedModule,
     CustomModule
   ],
-  entryComponents: [ButtonRenderUserComponent],
 })
 export class UserManagementModule {
 }

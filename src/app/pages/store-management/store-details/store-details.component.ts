@@ -3,9 +3,10 @@ import { Router } from '@angular/router';
 import { StoreService } from '../services/store.service';
 
 @Component({
-  selector: 'ngx-store-details',
-  templateUrl: './store-details.component.html',
-  styleUrls: ['./store-details.component.scss']
+    selector: 'ngx-store-details',
+    templateUrl: './store-details.component.html',
+    styleUrls: ['./store-details.component.scss'],
+    standalone: false
 })
 export class StoreDetailsComponent implements OnInit {
   store: any;

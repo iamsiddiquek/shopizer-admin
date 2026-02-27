@@ -3,9 +3,10 @@ import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'ngx-error',
-  templateUrl: './error.component.html',
-  styleUrls: ['./error.component.scss']
+    selector: 'ngx-error',
+    templateUrl: './error.component.html',
+    styleUrls: ['./error.component.scss'],
+    standalone: false
 })
 export class ErrorComponent implements OnInit {
 

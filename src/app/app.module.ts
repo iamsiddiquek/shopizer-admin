@@ -9,7 +9,6 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from "@angular/core";
 import {
   HTTP_INTERCEPTORS,
-  HttpClient,
   HttpClientModule,
 } from "@angular/common/http";
 import { ErrorHandler } from "@angular/core";
@@ -21,11 +20,10 @@ import { ThemeModule } from "./@theme/theme.module";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { AuthInterceptor } from "./pages/shared/interceptors/auth.interceptor";
 import {
-  TranslateLoader,
   TranslateModule,
   TranslateService,
 } from "@ngx-translate/core";
-import { TranslateHttpLoader } from "@ngx-translate/http-loader";
+import { provideTranslateHttpLoader } from "@ngx-translate/http-loader";
 import { NbDateFnsDateModule } from "@nebular/date-fns";
 import { NbMomentDateModule } from "@nebular/moment";
 import { GlobalHttpInterceptorService } from "./pages/shared/interceptors/globalError.interceptor";
@@ -65,11 +63,10 @@ import { ValueAddComponent } from "./pages/customers/optionsvalue/add.component"
     ThemeModule.forRoot(),
     CoreModule.forRoot(),
     TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient],
-      },
+      loader: provideTranslateHttpLoader({
+        prefix: "./assets/i18n/",
+        suffix: ".json",
+      }),
     }),
     ToastrModule.forRoot(),
     FileManagerModule,
@@ -91,18 +88,3 @@ import { ValueAddComponent } from "./pages/customers/optionsvalue/add.component"
   ],
 })
 export class AppModule { }
-
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
-}
-
-/**
- * Angular 10
- * Error ModuleWithProviders<T> requires 1 type argument(s)
- */
-declare module "@angular/core" {
-  interface ModuleWithProviders<T = any> {
-    ngModule: Type<T>;
-    providers?: Provider[];
-  }
-}

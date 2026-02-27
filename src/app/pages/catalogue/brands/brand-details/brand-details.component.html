@@ -1,3 +1,5 @@
 <div>
-  <ngx-brand-form *ngIf="brand.id" [brand]="brand" title="COMPONENTS.BRAND"></ngx-brand-form>
+  @if (brand.id) {
+    <ngx-brand-form [brand]="brand" title="COMPONENTS.BRAND"></ngx-brand-form>
+  }
 </div>

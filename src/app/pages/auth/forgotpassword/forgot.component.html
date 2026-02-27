@@ -10,12 +10,16 @@
           </span>
 
         </span>
-        <div class="form-group row alert-error" *ngIf="successMessage !== ''" style="width:100%;line-height: 2.5;color:green;font-size: 12px;margin-bottom:10px;">
-          {{successMessage}}
-        </div>
-        <div class="form-group row alert-error" *ngIf="errorMessage !== ''" style="width:100%;line-height: 2.5;color:#ff3d71;font-size: 12px;margin-bottom:10px;">
-          {{errorMessage}}
-        </div>
+        @if (successMessage !== '') {
+          <div class="form-group row alert-error" style="width:100%;line-height: 2.5;color:green;font-size: 12px;margin-bottom:10px;">
+            {{successMessage}}
+          </div>
+        }
+        @if (errorMessage !== '') {
+          <div class="form-group row alert-error" style="width:100%;line-height: 2.5;color:#ff3d71;font-size: 12px;margin-bottom:10px;">
+            {{errorMessage}}
+          </div>
+        }
 
         <div style="width:100%;">
           <span class="txt1 p-b-11">
@@ -27,10 +31,14 @@
           </div>
         </div>
         <div [hidden]="email.valid || email.pristine" class="help-block" style="margin-top:-32px; color:#ff3d71;font-size: 12px;">
-          <span *ngIf="!email.value && !isSubmitted">{{ 'USER_FORM.EMAIL_ADDRESS_ERROR_REQUIRED' |
+          @if (!email.value && !isSubmitted) {
+            <span>{{ 'USER_FORM.EMAIL_ADDRESS_ERROR_REQUIRED' |
             translate}}</span>
-          <span *ngIf="email.value">{{ 'USER_FORM.EMAIL_ADDRESS_ERROR_NOT_VALID' |
+          }
+          @if (email.value) {
+            <span>{{ 'USER_FORM.EMAIL_ADDRESS_ERROR_NOT_VALID' |
             translate}}</span>
+          }
         </div>
         <div style="width:100%;">
           <div class="flex-sb-m w-full p-b-28">

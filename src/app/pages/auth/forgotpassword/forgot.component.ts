@@ -7,9 +7,10 @@ import { Location, PlatformLocation } from '@angular/common';
 // import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'ngx-forgot',
-  templateUrl: './forgot.component.html',
-  styleUrls: ['./forgot.component.scss']
+    selector: 'ngx-forgot',
+    templateUrl: './forgot.component.html',
+    styleUrls: ['./forgot.component.scss'],
+    standalone: false
 })
 export class ForgotPasswordComponent implements OnInit {
   errorMessage = '';

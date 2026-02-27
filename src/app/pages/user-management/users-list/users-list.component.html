@@ -6,19 +6,58 @@
         <div class="content_spacing_empty"></div>
       </nb-card-header>
 
-      <form class="form-inline filter_section" *ngIf="isSuperadmin">
-        <div class="filter_left_section">
-          <!-- <p-dropdown *ngIf="stores.length> 0" [options]="stores" filter="true" (onChange)="choseStore($event)">
-            <ng-template let-item pTemplate="selectedItem">{{item.label}}</ng-template>
-            <ng-template let-car pTemplate="item">{{car.label}}</ng-template>
-          </p-dropdown> -->
+      @if (creationSuccessMessage) {
+        <div class="alert alert-success" role="alert">
+          {{ creationSuccessMessage }}
         </div>
-        <div class="filter_right_section">
-          <ngx-store-autocomplete (onStore)="choseStore($event)"></ngx-store-autocomplete>
-        </div>
-      </form>
+      }
 
-      <ng2-smart-table [settings]="settings" [source]="source" (custom)="route($event)" class="home-table"></ng2-smart-table>
+      @if (isSuperadmin) {
+        <form class="form-inline filter_section">
+          <div class="filter_left_section"></div>
+          <div class="filter_right_section">
+            <ngx-store-autocomplete (onStore)="choseStore($event)"></ngx-store-autocomplete>
+          </div>
+        </form>
+      }
+
+      <div class="table-responsive home-table">
+        @if (users.length > 0) {
+          <table class="table table-hover table-striped">
+            <thead>
+              <tr>
+                <th>{{ 'COMMON.ID' | translate }}</th>
+                <th>{{ 'COMMON.NAME' | translate }}</th>
+                <th>{{ 'COMMON.EMAIL_ADDRESS' | translate }}</th>
+                <th>{{ 'COMMON.STATUS' | translate }}</th>
+                <th>{{ 'COMMON.DETAILS' | translate }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (user of users; track user.id) {
+                <tr>
+                  <td>{{ user.id }}</td>
+                  <td>{{ user.name }}</td>
+                  <td>{{ user.emailAddress }}</td>
+                  <td>
+                    <input type="checkbox" [checked]="user.active" (change)="toggleUserStatus(user)">
+                  </td>
+                  <td>
+                    <button type="button" nbButton size="small" status="primary" [disabled]="!canManageUsers"
+                      (click)="openDetails(user)">
+                      {{ 'COMMON.DETAILS' | translate }}
+                    </button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        } @else {
+          <div class="text-center text-muted p-3">
+            No users found.
+          </div>
+        }
+      </div>
 
       <ngx-paginator (changePage)="changePage($event)" [pagesToShow]="5" [currentPage]="currentPage" [perPage]="perPage"
         [count]="totalCount">

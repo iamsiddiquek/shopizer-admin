@@ -39,7 +39,11 @@ export class GlobalErrorHandler implements ErrorHandler {
         } else if (error.status === 404) {
 
         } else if (error.status === 0) {
-          window.location.href = '/assets/static/error.html';
+          // Avoid triggering Karma full-page reloads during test runs.
+          const karmaRuntime = (window as any).__karma__;
+          if (!karmaRuntime) {
+            window.location.href = '/assets/static/error.html';
+          }
         }
       }
     } else {

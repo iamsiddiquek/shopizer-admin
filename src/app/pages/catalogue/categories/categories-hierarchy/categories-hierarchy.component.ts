@@ -5,9 +5,10 @@ import { TranslateService } from '@ngx-translate/core';
 import { StorageService } from '../../../shared/services/storage.service';
 
 @Component({
-  selector: 'ngx-categories-hierarchy',
-  templateUrl: './categories-hierarchy.component.html',
-  styleUrls: ['./categories-hierarchy.component.scss']
+    selector: 'ngx-categories-hierarchy',
+    templateUrl: './categories-hierarchy.component.html',
+    styleUrls: ['./categories-hierarchy.component.scss'],
+    standalone: false
 })
 export class CategoriesHierarchyComponent implements OnInit {
   @ViewChild('tree', { static: false }) tree;

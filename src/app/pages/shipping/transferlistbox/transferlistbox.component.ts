@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { stringify } from '@angular/compiler/src/util';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
 import { StorageService } from '../../shared/services/storage.service';
@@ -8,9 +7,10 @@ import { Subscription } from 'rxjs';
 
 
 @Component({
-  selector: 'app-transferlistbox',
-  templateUrl: './transferlistbox.component.html',
-  styleUrls: ['./transferlistbox.component.scss']
+    selector: 'app-transferlistbox',
+    templateUrl: './transferlistbox.component.html',
+    styleUrls: ['./transferlistbox.component.scss'],
+    standalone: false
 })
 export class TransferlistboxComponent implements OnInit {
 

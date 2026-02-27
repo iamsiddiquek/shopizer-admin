@@ -4,9 +4,10 @@ import { ActivatedRoute } from '@angular/router';
 import { InventoryService } from '../../services/inventory.service';
 
 @Component({
-  selector: 'ngx-inventory-details',
-  templateUrl: './inventory-details.component.html',
-  styleUrls: ['./inventory-details.component.scss']
+    selector: 'ngx-inventory-details',
+    templateUrl: './inventory-details.component.html',
+    styleUrls: ['./inventory-details.component.scss'],
+    standalone: false
 })
 export class InventoryDetailsComponent implements OnInit {
   inventory = {};

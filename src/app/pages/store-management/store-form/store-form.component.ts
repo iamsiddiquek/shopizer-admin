@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, ElementRef, Input, NgZone, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ConfigService } from '../../shared/services/config.service';
@@ -14,9 +14,10 @@ import { validators } from '../../shared/validation/validators';
 import { forkJoin } from 'rxjs';
 
 @Component({
-  selector: 'ngx-store-form',
-  templateUrl: './store-form.component.html',
-  styleUrls: ['./store-form.component.scss']
+    selector: 'ngx-store-form',
+    templateUrl: './store-form.component.html',
+    styleUrls: ['./store-form.component.scss'],
+    standalone: false
 })
 export class StoreFormComponent implements OnInit {
   @Input() title: string;
@@ -33,7 +34,7 @@ export class StoreFormComponent implements OnInit {
   flag = true;
   provinces = [];
   countries = [];
-  form: FormGroup;
+  form: UntypedFormGroup;
   env = environment;
   componentForm = {
     street_number: 'short_name',
@@ -74,7 +75,7 @@ export class StoreFormComponent implements OnInit {
     }
   ];
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private configService: ConfigService,
     private storeService: StoreService,
     //private mapsAPILoader: MapsAPILoader,

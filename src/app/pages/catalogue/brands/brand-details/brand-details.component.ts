@@ -4,9 +4,10 @@ import { ActivatedRoute } from '@angular/router';
 import { BrandService } from '../services/brand.service';
 
 @Component({
-  selector: 'ngx-brand-details',
-  templateUrl: './brand-details.component.html',
-  styleUrls: ['./brand-details.component.scss']
+    selector: 'ngx-brand-details',
+    templateUrl: './brand-details.component.html',
+    styleUrls: ['./brand-details.component.scss'],
+    standalone: false
 })
 export class BrandDetailsComponent implements OnInit {
   brand: any = {};

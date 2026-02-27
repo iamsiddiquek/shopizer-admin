@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 import { OptionService } from '../../../options/services/option.service';
 import { OptionValuesService } from '../../../options/services/option-values.service';
@@ -13,16 +13,17 @@ import { ToastrService } from 'ngx-toastr';
 import { formatMoney } from '../../../../shared/validation/price-validation';
 import { NbDialogRef } from '@nebular/theme';
 @Component({
-  selector: 'ngx-attribute-form',
-  templateUrl: './attribute-form.component.html',
-  styleUrls: ['./attribute-form.component.scss']
+    selector: 'ngx-attribute-form',
+    templateUrl: './attribute-form.component.html',
+    styleUrls: ['./attribute-form.component.scss'],
+    standalone: false
 })
 export class AttributeFormComponent implements OnInit {
   productId: any;
   attributeId: any;
   attribute: any = {};
 
-  form: FormGroup;
+  form: UntypedFormGroup;
   loading = false;
 
   options = [];
@@ -33,7 +34,7 @@ export class AttributeFormComponent implements OnInit {
   perPage = 50;
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private optionService: OptionService,
     private storageService: StorageService,
     private optionValuesService: OptionValuesService,

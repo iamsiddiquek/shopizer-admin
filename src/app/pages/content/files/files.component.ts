@@ -7,9 +7,10 @@ import { Lightbox } from 'ngx-lightbox';
 import { MalihuScrollbarService } from 'ngx-malihu-scrollbar';
 
 @Component({
-  selector: 'files-content',
-  templateUrl: './files.component.html',
-  styleUrls: ['./files.component.scss'],
+    selector: 'files-content',
+    templateUrl: './files.component.html',
+    styleUrls: ['./files.component.scss'],
+    standalone: false
 })
 export class FilesComponent {
   name: string;

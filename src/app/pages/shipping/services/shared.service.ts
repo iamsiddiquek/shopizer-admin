@@ -10,7 +10,7 @@ export class SharedService {
     private crudService: CrudService
   ) { }
 
-  private subject = new Subject<any>();
+  private subject = new Subject<void>();
   private subject1 = new Subject<any>();
 
   sendClickEvent() {
@@ -100,4 +100,3 @@ export class SharedService {
     return this.crudService.post('/v1/private/modules/shipping/', param);
   }
 }
-

@@ -12,7 +12,8 @@ import { Router } from '@angular/router';
 @Component({
     selector: 'ngx-groups-list',
     templateUrl: './groups-list.component.html',
-    styleUrls: ['./groups-list.component.scss']
+    styleUrls: ['./groups-list.component.scss'],
+    standalone: false
 })
 export class GroupsListComponent implements OnInit {
     source: LocalDataSource = new LocalDataSource();

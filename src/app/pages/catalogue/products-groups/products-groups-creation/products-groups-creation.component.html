@@ -9,10 +9,12 @@
       <div class="form-group">
         <label class="col-sm-10 col-form-label">{{ 'PRODUCT_ATTRIBUTES.ATTRIBUTE_NAME' | translate}}</label>
         <div class="col-sm-12">
-          <p-dropdown *ngIf="options.length" [options]="options" formControlName='attributeName' filter="true">
-            <ng-template let-item pTemplate="selectedItem">{{item.label}}</ng-template>
-            <ng-template let-el pTemplate="item">{{el.label}}</ng-template>
-          </p-dropdown>
+          @if (options.length) {
+            <p-dropdown [options]="options" formControlName='attributeName' filter="true">
+              <ng-template let-item pTemplate="selectedItem">{{item.label}}</ng-template>
+              <ng-template let-el pTemplate="item">{{el.label}}</ng-template>
+            </p-dropdown>
+          }
         </div>
       </div>
 
@@ -27,17 +29,19 @@
       <div class="form-group">
         <label class="col-sm-10 col-form-label">{{ 'PRODUCT_ATTRIBUTES.PRODUCT_OPTION' | translate}}</label>
         <div class="col-sm-12">
-          <p-dropdown *ngIf="optionValues.length" [options]="optionValues" formControlName='optionValue' filter="true">
-            <ng-template let-item pTemplate="selectedItem">{{item.label}}</ng-template>
-            <ng-template let-el pTemplate="item">{{el.label}}</ng-template>
-          </p-dropdown>
+          @if (optionValues.length) {
+            <p-dropdown [options]="optionValues" formControlName='optionValue' filter="true">
+              <ng-template let-item pTemplate="selectedItem">{{item.label}}</ng-template>
+              <ng-template let-el pTemplate="item">{{el.label}}</ng-template>
+            </p-dropdown>
+          }
         </div>
       </div>
 
 
       <div class="form-group">
         <label for="optionPrice" class="col-sm-10 col-form-label">{{ 'PRODUCT_ATTRIBUTES.OPTION_PRICE' |
-          translate}}</label>
+        translate}}</label>
         <div class="col-sm-12">
           <input type="number" class="form-control" id="optionPrice" formControlName='optionPrice'
             placeholder="{{ 'PRODUCT.QUANTITY' | translate}}" required>
@@ -73,7 +77,7 @@
 
       <div class="form-group">
         <label for="additionalWeight" class="col-sm-10 col-form-label">{{ 'PRODUCT_ATTRIBUTES.ADDITIONAL_WEIGHT' |
-          translate}}</label>
+        translate}}</label>
         <div class="col-sm-12">
           <input type="number" class="form-control" id="additionalWeight" formControlName='additionalWeight'
             placeholder="additionalWeight" required>
@@ -84,7 +88,7 @@
 
       <div class="form-group actions-button">
         <button type="submit" class="btn btn-primary" [nbSpinner]="loader" nbSpinnerSize="large"
-          nbSpinnerStatus="control" (click)="save()">{{ ( !loader ? 'COMMON.SAVE' : '' ) | translate }}</button>
+        nbSpinnerStatus="control" (click)="save()">{{ ( !loader ? 'COMMON.SAVE' : '' ) | translate }}</button>
       </div>
 
     </form>

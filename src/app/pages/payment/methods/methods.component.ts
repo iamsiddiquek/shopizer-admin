@@ -4,12 +4,12 @@ import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 
 import { TranslateService } from '@ngx-translate/core';
-import { error } from '@angular/compiler/src/util';
 
 @Component({
-  selector: 'ngx-payment-methods',
-  templateUrl: './methods.component.html',
-  styleUrls: ['./methods.component.scss']
+    selector: 'ngx-payment-methods',
+    templateUrl: './methods.component.html',
+    styleUrls: ['./methods.component.scss'],
+    standalone: false
 })
 export class PaymentMethodsComponent implements OnInit {
   loadingList = false;

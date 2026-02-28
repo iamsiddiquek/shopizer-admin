@@ -11,17 +11,7 @@ import { CrudService } from './crud.service';
 
 export class UserService {
   userIdString = 'userId';
-  roles = {
-    canAccessToOrder: false,
-    isSuperadmin: false,
-    isAdmin: false,
-    isAdminCatalogue: false,
-    isAdminStore: false,
-    isAdminOrder: false,
-    isAdminContent: false,
-    isCustomer: false,
-    isAdminRetail: false,
-  };
+  roles = this.buildEmptyRoles();
 
   constructor(
     private crudService: CrudService
@@ -49,40 +39,53 @@ export class UserService {
   }
 
   // check roles for access to order page
-  checkForAccess(array) {
-    roles.forEach(role => {
-      array.forEach(elem => {
-        if (elem.name === role.name) {
-          this.roles.canAccessToOrder = true;
-        }
-        switch (elem.name) {
-          case 'SUPERADMIN':
-            this.roles.isSuperadmin = true;
-            break;
-          case 'ADMIN':
-            this.roles.isAdmin = true;
-            break;
-          case 'ADMIN_CATALOGUE':
-            this.roles.isAdminCatalogue = true;
-            break;
-          case 'ADMIN_STORE':
-            this.roles.isAdminStore = true;
-            break;
-          case 'ADMIN_ORDER':
-            this.roles.isAdminOrder = true;
-            break;
-          case 'ADMIN_CONTENT':
-            this.roles.isAdminContent = true;
-            break;
-          case 'CUSTOMER':
-            this.roles.isCustomer = true;
-            break;
-          case 'ADMIN_RETAIL':
-            this.roles.isAdminRetail = true;
-            break;
-        }
-      });
+  checkForAccess(array = []) {
+    this.resetRoles();
+
+    const roleNames = Array.from(
+      new Set((array || []).map((elem) => elem && elem.name).filter(Boolean))
+    );
+
+    this.roles.canAccessToOrder = roleNames.some((name) => roles.some((role) => role.name === name));
+
+    roleNames.forEach((roleName) => {
+      switch (roleName) {
+        case 'SUPERADMIN':
+          this.roles.isSuperadmin = true;
+          break;
+        case 'ADMIN':
+          this.roles.isAdmin = true;
+          break;
+        case 'ADMIN_CATALOGUE':
+          this.roles.isAdminCatalogue = true;
+          break;
+        case 'ADMIN_STORE':
+          this.roles.isAdminStore = true;
+          break;
+        case 'ADMIN_ORDER':
+          this.roles.isAdminOrder = true;
+          break;
+        case 'ADMIN_CONTENT':
+          this.roles.isAdminContent = true;
+          break;
+        case 'CUSTOMER':
+          this.roles.isCustomer = true;
+          break;
+        case 'ADMIN_RETAIL':
+        case 'ADMIN_RETAILER':
+          this.roles.isAdminRetail = true;
+          break;
+      }
     });
+  }
+
+  hydrateRoles(array = []) {
+    this.checkForAccess(array);
+    localStorage.setItem('roles', JSON.stringify(this.roles));
+  }
+
+  resetRoles() {
+    this.roles = this.buildEmptyRoles();
   }
 
   getUsersList(store, params): Observable<any> {
@@ -158,6 +161,20 @@ export class UserService {
 
   destroyUserId() {
     localStorage.removeItem(this.userIdString);
+  }
+
+  private buildEmptyRoles() {
+    return {
+      canAccessToOrder: false,
+      isSuperadmin: false,
+      isAdmin: false,
+      isAdminCatalogue: false,
+      isAdminStore: false,
+      isAdminOrder: false,
+      isAdminContent: false,
+      isCustomer: false,
+      isAdminRetail: false,
+    };
   }
 
   private normalizeApiResponse(body: any, defaultMessage: string, defaultData: any) {

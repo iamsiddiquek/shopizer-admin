@@ -89,8 +89,7 @@ export class LoginComponent implements OnInit {
         this.userService.saveUserId(res.id);
         this.userService.getUserProfile()
           .subscribe(user => {
-            this.userService.checkForAccess(user.groups);
-            localStorage.setItem('roles', JSON.stringify(this.userService.roles));
+            this.userService.hydrateRoles(user.groups);
             localStorage.setItem('merchant', user.merchant);
             delay(1000);
             if (this.isRemember) {

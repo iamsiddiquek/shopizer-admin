@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
+  private isLoggingOut = false;
+  private logoutFallbackTimer: any;
 
   constructor(
     private tokenService: TokenService,
@@ -24,23 +26,35 @@ export class AuthService {
   }
 
   logout() {
+    if (this.isLoggingOut) {
+      return;
+    }
+
+    this.isLoggingOut = true;
     console.info('[AuthService] Logging out user and clearing session');
-    this.tokenService.destroyToken();
-    this.userService.destroyUserId();
-    this.userService.roles = {
-      canAccessToOrder: false,
-      isSuperadmin: false,
-      isAdmin: false,
-      isAdminCatalogue: false,
-      isAdminStore: false,
-      isAdminOrder: false,
-      isAdminContent: false,
-      isCustomer: false,
-      isAdminRetail: false,
-    };
-    localStorage.removeItem('roles');
-    localStorage.removeItem('merchant');
-    this.router.navigateByUrl('/auth/login');
+    const token = this.tokenService.getToken();
+
+    this.logoutFallbackTimer = setTimeout(() => {
+      this.finalizeLogout();
+    }, 2000);
+
+    if (!token) {
+      this.finalizeLogout();
+      return;
+    }
+
+    this.crudService.post('/v1/private/logout', {}).subscribe({
+      next: () => {
+        console.info('[AuthService] Backend logout recorded');
+      },
+      error: (error) => {
+        console.warn('[AuthService] Backend logout failed, proceeding with local logout', error);
+        this.finalizeLogout();
+      },
+      complete: () => {
+        this.finalizeLogout();
+      },
+    });
   }
 
   refresh(): Observable<any> {
@@ -64,6 +78,21 @@ export class AuthService {
   }
   register(param): Observable<any> {
     return this.crudService.post('/v1/store/signup', param)
+  }
+
+  private finalizeLogout() {
+    if (this.logoutFallbackTimer) {
+      clearTimeout(this.logoutFallbackTimer);
+      this.logoutFallbackTimer = null;
+    }
+
+    this.tokenService.destroyToken();
+    this.userService.destroyUserId();
+    this.userService.resetRoles();
+    localStorage.removeItem('roles');
+    localStorage.removeItem('merchant');
+    this.router.navigateByUrl('/auth/login');
+    this.isLoggingOut = false;
   }
 
 }

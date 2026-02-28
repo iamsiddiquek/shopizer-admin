@@ -64,6 +64,8 @@ export class HeaderComponent implements OnInit {
     this.localedMenu = this.translateMenu(this.localedMenu);
     this.userService.getUserProfile()
       .subscribe((user: any) => {
+        this.userService.hydrateRoles(user.groups);
+        localStorage.setItem('merchant', user.merchant);
         this.user = user.firstName + ' ' + user.lastName;
         this.setLanguage(localStorage.getItem('lang'));
       });

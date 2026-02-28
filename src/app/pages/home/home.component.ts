@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
     this.userService.getUserProfile()
       .subscribe(user => {
         //console.log(this.userService.roles);
-        this.userService.checkForAccess(user.groups);
+        this.userService.hydrateRoles(user.groups);
         this.canAccessToOrder = this.userService.roles.canAccessToOrder;
       });
   }
@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit {
       .subscribe(([countries, user, merchant]) => {
         this._countryArray = countries;
         this.user.userName = user.userName;
-        this.user.lastAccess = user.lastAccess;
+        this.user.lastAccess = this.resolveLastAccess(user);
         this.user.merchantName = merchant.name;
         this.user.address = merchant.address.address;
         this.user.city = merchant.address.city;
@@ -97,6 +97,10 @@ export class HomeComponent implements OnInit {
     //invoke backend
     //return status
     //stop loading
+  }
+
+  private resolveLastAccess(user: any): string {
+    return user?.lastAccess || user?.loginTime || new Date().toISOString();
   }
 
 }

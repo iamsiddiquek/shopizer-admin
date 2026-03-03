@@ -3,13 +3,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ErrorService } from '../../shared/services/error.service';
 // import { ConfigService } from '../../shared/services/config.service';
 import { ToastrService } from 'ngx-toastr';
-let moneyorder = require('../services/moneyorder.json');
-let paypalData = require('../services/paypal.json');
-let beanStreamData = require('../services/beanstream.json');
-let stripeData = require('../services/stripe.json');
-let paytmData = require('../services/paytm.json');
+const moneyorder = require('../services/moneyorder.json');
+const paypalData = require('../services/paypal.json');
+const beanStreamData = require('../services/beanstream.json');
+const stripeData = require('../services/stripe.json');
+const paytmData = require('../services/paytm.json');
 
-let braintreeData = require('../services/braintree.json');
+const braintreeData = require('../services/braintree.json');
 import { PaymentService } from '../services/payment.service';
 import { NbDateAdapterService } from '@nebular/theme';
 @Component({
@@ -23,7 +23,7 @@ export class ConfigureComponent implements OnInit {
   active = '';
   error: any;
   formData: Array<any> = [];
-  loadingList: boolean = false;
+  loadingList = false;
   paymentType: any;
   paymentData: any;
   editorConfig = {
@@ -57,7 +57,7 @@ export class ConfigureComponent implements OnInit {
   }
   ngOnInit() {
     this.error = null;
-    let paymenttype = this.activatedRoute.snapshot.paramMap.get('id');
+    const paymenttype = this.activatedRoute.snapshot.paramMap.get('id');
      this.paymentType=paymenttype;
 
     this.formData = [];
@@ -111,13 +111,13 @@ export class ConfigureComponent implements OnInit {
       console.log('Value of i ' + i);
       console.log('Value of value ' + value);
       if (value.type == 'radio') {
-        let varType = Array.isArray(this.paymentData[value.objectKey][value.name])
+        const varType = Array.isArray(this.paymentData[value.objectKey][value.name])
         this.formData[i].value = varType ? this.paymentData[value.objectKey][value.name][0] : this.paymentData[value.objectKey][value.name]
       } else if (value.type == 'groupcheckbox') {
         if (value.objectKey == '') {
         } else {
           this.paymentData[value.objectKey][value.name].map((option) => {
-            let a = value.optionData.findIndex((a) => a.value === option);
+            const a = value.optionData.findIndex((a) => a.value === option);
             value.optionData[a].checked = true;
           })
         }
@@ -127,9 +127,9 @@ export class ConfigureComponent implements OnInit {
     });
   }
   save() {
-    let paymenttype = this.activatedRoute.snapshot.paramMap.get('id');
+    const paymenttype = this.activatedRoute.snapshot.paramMap.get('id');
     console.log(this.formData)
-    let param: any = {};
+    const param: any = {};
     this.formData.map((value) => {
       param[value.name] = value.value
     });

@@ -3,12 +3,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 // import { ConfigService } from '../../shared/services/config.service';
 import { ToastrService } from 'ngx-toastr';
 // import { TaxService } from '../services/tax.service';
-let canadapost = require('../services/canadapost.json');
-let upsData = require('../services/ups.json');
-let shiprocketData = require('../services/shiprocket.json');
-let customRulesData = require('../services/customrules.json');
-let storePickUpData = require('../services/storepickup.json');
-let weightBased = require('../services/weightbased.json');
+const canadapost = require('../services/canadapost.json');
+const upsData = require('../services/ups.json');
+const shiprocketData = require('../services/shiprocket.json');
+const customRulesData = require('../services/customrules.json');
+const storePickUpData = require('../services/storepickup.json');
+const weightBased = require('../services/weightbased.json');
 import { SharedService } from '../services/shared.service';
 
 @Component({
@@ -21,7 +21,7 @@ export class ShippingConfigureComponent implements OnInit {
 
   active = '';
   formData: Array<any> = [];
-  loadingList: boolean = false;
+  loadingList = false;
   shippingType: any;
   shippingData: any;
   editorConfig = {
@@ -51,7 +51,7 @@ export class ShippingConfigureComponent implements OnInit {
 
   }
   ngOnInit() {
-    let type = this.activatedRoute.snapshot.paramMap.get('id');
+    const type = this.activatedRoute.snapshot.paramMap.get('id');
     console.log(type);
     if (type == 'canadapost') {
       this.formData = canadapost;
@@ -108,7 +108,7 @@ export class ShippingConfigureComponent implements OnInit {
 
         } else {
           this.shippingData[value.objectKey][value.name].map((option) => {
-            let a = value.optionData.findIndex((a) => a.value === option)
+            const a = value.optionData.findIndex((a) => a.value === option)
             // console.log(a)
             value.optionData[a].checked = true;
           })
@@ -121,15 +121,15 @@ export class ShippingConfigureComponent implements OnInit {
   }
   save() {
     // console.log(this.formData)
-    let type = this.activatedRoute.snapshot.paramMap.get('id');
-    let param: any = {};
+    const type = this.activatedRoute.snapshot.paramMap.get('id');
+    const param: any = {};
     this.formData.map((value) => {
       // console.log(value.value)
       if (value.objectKey === "integrationOptions") {
         if (value.type == 'radio') {
           param[value.name] = value.value
         } else {
-          let a = value.optionData.filter((a) => { return a.checked === true }).map(function (obj) {
+          const a = value.optionData.filter((a) => { return a.checked === true }).map(function (obj) {
             return obj.value;
           });
           param[value.name] = a

@@ -66,7 +66,7 @@ export class OrderDetailsComponent implements OnInit {
     postalCode: '',
     phone: ''
   }
-  transactionType: string = ''
+  transactionType = ''
   orderID: any;
   defaultCountry: any;
   buttonText: any = 'Update Order'
@@ -196,7 +196,7 @@ export class OrderDetailsComponent implements OnInit {
   }
   updateHistory() {
     this.loadingList = true;
-    let param = {
+    const param = {
       comments: this.statusFields.comments,
       date: moment().format('yyyy-MM-DD'),
       status: this.statusFields.status
@@ -218,7 +218,7 @@ export class OrderDetailsComponent implements OnInit {
   }
   updateOrder() {
     this.loadingList = true;
-    let param = {
+    const param = {
       "emailAddress": this.info.emailAddress,
       "billing": {
         "postalCode": this.billing.postalCode,

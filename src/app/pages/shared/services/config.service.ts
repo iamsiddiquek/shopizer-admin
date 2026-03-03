@@ -21,7 +21,7 @@ export class ConfigService {
 
   getListOfSupportedLanguages(store: string) {
     const params = {
-      'store': store
+      store
     };
 
     return this.crudService.get(`/v1/store/languages`, params)
@@ -85,8 +85,8 @@ export class ConfigService {
   }
 
   getListOfGlobalLanguages(): Language[] {
-      let langs:string[] = environment.client.language.array
-      let languages: Language[] = [];
+      const langs:string[] = environment.client.language.array
+      const languages: Language[] = [];
       langs.forEach(lang => {
         var l = new Language(0,lang,this.translate.instant('LANG.' + lang));
         languages.push(l);
@@ -106,7 +106,7 @@ export class ConfigService {
 
   getListOfCountriesByLanguage(lang) {
     const params = {
-      'lang': lang,
+      lang,
     };
     return this.crudService.get(`/v1/country`, params);
   }

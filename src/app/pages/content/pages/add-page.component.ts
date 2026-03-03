@@ -33,7 +33,7 @@ export class AddPageComponent implements OnInit {
   // mainmenu: any = false;
   // code: string = '';
   // order: number = 0;
-  action: string = 'save';
+  action = 'save';
   // language: string = 'en';
   // description: Array<any> = []
   languages = [];
@@ -43,7 +43,7 @@ export class AddPageComponent implements OnInit {
   currentLanguage = localStorage.getItem('lang');
 
   isCodeExists = false;
-  message: string = '';
+  message = '';
   public scrollbarOptions = { axis: 'y', theme: 'minimal-dark' };
 
 
@@ -283,7 +283,7 @@ export class AddPageComponent implements OnInit {
       tooltip: 'Gallery',
       container: '.note-editor',
       className: 'note-btn',
-      click: function () {
+      click () {
         me.dialogService.open(ImageBrowserComponent, {}).onClose.subscribe(name => name && context.invoke('editor.pasteHTML', '<img src="' + name + '">'));
       }
     });

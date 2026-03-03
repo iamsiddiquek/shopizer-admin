@@ -32,7 +32,7 @@ export class OptionSetComponent implements OnInit {
     productTypes: [],
     readOnly: false
   }
-  loading: boolean = false;
+  loading = false;
   form: UntypedFormGroup;
   productOption: Array<any> = [];
   productOptionValue: Array<any> = [];
@@ -62,7 +62,7 @@ export class OptionSetComponent implements OnInit {
     this.createForm();
     const optionId = this.activatedRoute.snapshot.paramMap.get('optionId');
     if (optionId) {
-      let param = {
+      const param = {
         lang: this.storageService.getLanguage(),
         store: this.storageService.getMerchant()
       }
@@ -75,8 +75,8 @@ export class OptionSetComponent implements OnInit {
           this.option.code = res.code;
           this.option.option = res.option.id;
           this.option.readOnly = res.readOnly;
-          let value = []
-          let types = []
+          const value = []
+          const types = []
           if(res.values) {
             res.values.map((optionValue) => {
               value.push(optionValue.id)
@@ -138,7 +138,7 @@ export class OptionSetComponent implements OnInit {
             return el.language === this.storageService.getLanguage();
           });
           const name = description && description.name ? description.name : '';
-          this.productOption.push({ id: value.id, code: value.code, name: name })
+          this.productOption.push({ id: value.id, code: value.code, name })
         })
       }, error => {
         //TODO error
@@ -158,7 +158,7 @@ export class OptionSetComponent implements OnInit {
             return el.language === this.storageService.getLanguage();
           });
           const name = description && description.name ? description.name : '';
-          this.productOptionValue.push({ id: value.id, code: value.code, name: name })
+          this.productOptionValue.push({ id: value.id, code: value.code, name })
         })
       }, error => {
         //TODO error
@@ -212,7 +212,7 @@ export class OptionSetComponent implements OnInit {
     this.isValidCode = true;
     this.isValidOption = true;
 
-    let optionObj = this.form.value;
+    const optionObj = this.form.value;
     optionObj.optionValues = this.option.optionValues;
     optionObj.productTypes = this.option.productTypes;
 

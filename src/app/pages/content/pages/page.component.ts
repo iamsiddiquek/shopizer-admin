@@ -16,7 +16,7 @@ import { TranslateService } from '@ngx-translate/core';
     standalone: false
 })
 export class PageComponent {
-  search_text: string = '';
+  search_text = '';
   stores: Array<any> = [];
   perPage = 10;
   currentPage = 1;

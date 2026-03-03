@@ -214,7 +214,7 @@ export class AddComponent implements OnInit {
   onAddCustomer() {
     if (this.buttonText == 'Save') {
       this.loading = true;
-      let param = {
+      const param = {
         "billing": {
           "company": this.billing.company,
           "address": this.billing.address,
@@ -256,7 +256,7 @@ export class AddComponent implements OnInit {
         });
     } else {
       this.loading = true;
-      let param = {
+      const param = {
         "id": this.customerID,
         "billing": {
           "company": this.billing.company,

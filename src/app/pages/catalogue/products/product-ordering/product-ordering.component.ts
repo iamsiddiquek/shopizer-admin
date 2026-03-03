@@ -15,7 +15,7 @@ export class ProductOrderingComponent implements OnInit {
 
   products = [];
   loadingList = false;
-  loading: boolean = false;
+  loading = false;
   stores = [];
   isSuperadmin: boolean;
   selectedStore: String = '';
@@ -106,7 +106,7 @@ export class ProductOrderingComponent implements OnInit {
     this.categoryService.getListOfCategories(this.params)
       .subscribe(categories => {
         console.log(categories)
-        let tempValue = [];
+        const tempValue = [];
         categories.categories.forEach((value) => {
           tempValue.push(value.code);
           this.categoryTemp.push({ 'id': value.id, 'name': value.description.name.toLowerCase() })

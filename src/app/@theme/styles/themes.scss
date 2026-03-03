@@ -1,9 +1,10 @@
 // @nebular theming framework
-@import '@nebular/theme/styles/theming';
+@forward '@nebular/theme/styles/theming';
+@use '@nebular/theme/styles/theming' as *;
 // @nebular out of the box themes
-@import '@nebular/theme/styles/themes';
+@use '@nebular/theme/styles/themes';
 
-$nb-themes: nb-register-theme((
+$_: nb-register-theme((
   layout-padding-top: 2.25rem,
 
   menu-item-icon-margin: 0 0.5rem 0 0,
@@ -24,7 +25,7 @@ $nb-themes: nb-register-theme((
   slide-out-shadow-color-rtl: 0 4px 14px 0 #8f9bb3,
 ), default, default);
 
-$nb-themes: nb-register-theme((
+$_: nb-register-theme((
   layout-padding-top: 2.25rem,
 
   menu-item-icon-margin: 0 0.5rem 0 0,
@@ -45,7 +46,7 @@ $nb-themes: nb-register-theme((
   slide-out-shadow-color-rtl: -2px 0 3px #29157a,
 ), cosmic, cosmic);
 
-$nb-themes: nb-register-theme((
+$_: nb-register-theme((
   layout-padding-top: 2.25rem,
 
   menu-item-icon-margin: 0 0.5rem 0 0,
@@ -66,7 +67,7 @@ $nb-themes: nb-register-theme((
   slide-out-shadow-color-rtl: 0 4px 14px 0 #8f9bb3,
 ), corporate, corporate);
 
-$nb-themes: nb-register-theme((
+$_: nb-register-theme((
   layout-padding-top: 2.25rem,
 
   menu-item-icon-margin: 0 0.5rem 0 0,

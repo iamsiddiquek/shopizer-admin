@@ -19,9 +19,9 @@ export class PackagesAddComponent implements OnInit {
     treshold: '',
     type: false
   }
-  loadingList: boolean = false;
-  codeExits: boolean = false;
-  isUpdated: boolean = false;
+  loadingList = false;
+  codeExits = false;
+  isUpdated = false;
   constructor(
     private sharedService: SharedService,
     private toastr: ToastrService,
@@ -49,7 +49,7 @@ export class PackagesAddComponent implements OnInit {
   save() {
     this.loadingList = true;
 
-    let param = {
+    const param = {
       type: this.packages.type ? "BOX" : "ITEM",
       code: this.packages.code,
       shippingHeight: this.packages.type ? this.packages.shippingHeight : 0,

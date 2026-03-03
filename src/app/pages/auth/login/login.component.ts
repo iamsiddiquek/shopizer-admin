@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
     });
     if (localStorage.getItem('isRemember') === 'true') {
       this.isRemember = true;
-      let loginEmail = localStorage.getItem('loginEmail')
+      const loginEmail = localStorage.getItem('loginEmail')
       this.form.patchValue({
         username: loginEmail
       });

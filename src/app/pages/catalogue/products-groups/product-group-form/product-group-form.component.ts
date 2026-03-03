@@ -20,7 +20,7 @@ export class ProductGroupFormComponent implements OnInit {
   form: UntypedFormGroup;
   isCodeUnique = true;
   uniqueCode: string;
-  loading: boolean = false;
+  loading = false;
   selectedItems = [];
   dropdownSettings = {};
   perPage = 50;
@@ -76,7 +76,7 @@ export class ProductGroupFormComponent implements OnInit {
   getProductList() {
     this.productService.getListOfProducts(this.params)
       .subscribe(res => {
-        let temp = []
+        const temp = []
         res.products.map((value) => {
           temp.push({ 'id': value.id, 'name': value.description.name })
         });
@@ -86,7 +86,7 @@ export class ProductGroupFormComponent implements OnInit {
   getProductByCode() {
     this.productGroupsService.getProductsByGroup(this.uniqueCode, this.itemsParams)
       .subscribe(res => {
-        let temp = []
+        const temp = []
         res.products.map((value) => {
           temp.push({ 'id': value.id, 'name': value.description.name })
         });
@@ -122,7 +122,7 @@ export class ProductGroupFormComponent implements OnInit {
     });
   }
   private fillForm() {
-    let data = JSON.parse(localStorage.getItem('groupData'));
+    const data = JSON.parse(localStorage.getItem('groupData'));
     this.form.patchValue({
       code: data.code,
       active: data.active,

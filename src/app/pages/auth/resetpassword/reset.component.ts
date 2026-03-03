@@ -16,8 +16,8 @@ export class ResetPasswordComponent implements OnInit {
   passwordType = 0;
   newPasswordType = 0;
   token: any;
-  loadingList: boolean = false;
-  isValid: boolean = true;
+  loadingList = false;
+  isValid = true;
   user = {
     password: '',
     newpassword: ''
@@ -69,7 +69,7 @@ export class ResetPasswordComponent implements OnInit {
   onClickSubmit() {
     this.loadingList = true;
     this.errorMessage = '';
-    let param = { 'password': this.user.password, 'repeatPassword': this.user.newpassword }
+    const param = { 'password': this.user.password, 'repeatPassword': this.user.newpassword }
     this.authService.resetPassword(this.token, param)
       .subscribe(res => {
         this.loadingList = false;

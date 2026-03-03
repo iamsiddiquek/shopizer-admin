@@ -83,11 +83,11 @@ export class ListingService {
    * @param change returns parameters and values
    */
   private filter(change) {
-    let filters = change.filter;
+    const filters = change.filter;
     
     if(filters != null) {
-      let requestParam = null;
-      let params = [];
+      const requestParam = null;
+      const params = [];
       
       var self = this;
 

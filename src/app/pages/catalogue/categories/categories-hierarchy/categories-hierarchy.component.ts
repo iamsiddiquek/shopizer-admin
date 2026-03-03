@@ -17,7 +17,7 @@ export class CategoriesHierarchyComponent implements OnInit {
     allowDrag: true
   }
   loader = false;
-  loading: boolean = false;
+  loading = false;
   params = this.loadParams();
 
   constructor(

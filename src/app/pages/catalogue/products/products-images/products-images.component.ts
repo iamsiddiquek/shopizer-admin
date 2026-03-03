@@ -51,7 +51,7 @@ export class ProductsImagesComponent implements OnInit {
     this.addImageUrlComponent = this.productImageService.addImageUrl(this.id);
     //this only happens when /images, not when default
     if(this.location.path().includes('images')) {
-      let el = document.getElementById('tabs');
+      const el = document.getElementById('tabs');
       el.scrollIntoView();
     }
   }

@@ -17,14 +17,14 @@ import { ErrorService } from '../../shared/services/error.service';
 export class ListComponent implements OnInit {
   source: any = new LocalDataSource();
   settings = {};
-  search_text: string = '';
+  search_text = '';
   loadingList = false;
   perPage = 10;
   currentPage = 1;
   totalCount;
   stores: Array<any> = [];
   selectedStore: String = '';
-  searchValue: string = '';
+  searchValue = '';
   params = this.loadParams();
   constructor(
     private customersService: CustomersService,

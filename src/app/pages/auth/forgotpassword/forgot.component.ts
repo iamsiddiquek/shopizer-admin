@@ -15,8 +15,8 @@ import { Location, PlatformLocation } from '@angular/common';
 export class ForgotPasswordComponent implements OnInit {
   errorMessage = '';
   successMessage = '';
-  isSubmitted: boolean = false;
-  loadingList: boolean = false;
+  isSubmitted = false;
+  loadingList = false;
   user = {
     email: '',
     url: ''

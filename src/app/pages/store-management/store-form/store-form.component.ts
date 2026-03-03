@@ -428,7 +428,7 @@ export class StoreFormComponent implements OnInit {
   }
 
   addSupportedLanguage(languageCode) {
-    let newLanguages = this.form.value.supportedLanguages ? [...this.form.value.supportedLanguages] : [];
+    const newLanguages = this.form.value.supportedLanguages ? [...this.form.value.supportedLanguages] : [];
     // check if element is exist in array
     const index = newLanguages.indexOf(languageCode);
     const selectedIndex = this.supportedLanguagesSelected.indexOf(languageCode);

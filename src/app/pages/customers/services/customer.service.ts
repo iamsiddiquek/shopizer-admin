@@ -25,7 +25,7 @@ export class CustomersService {
 
   deleteCustomer(customerID, store): Observable<any> {
     const params = {
-      store: store
+      store
     };
     return this.crudService.delete('/v1/private/customer/' + customerID, params);
   }

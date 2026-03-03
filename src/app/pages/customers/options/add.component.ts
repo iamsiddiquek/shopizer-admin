@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
     standalone: false
 })
 export class OptionsAddComponent implements OnInit {
-  loadingList: boolean = false;
+  loadingList = false;
   displayText: Array<any> = [{ 'name': 'text' }, { 'name': 'select' }, { 'name': 'radio' }, { 'name': 'Checkbox' }]
   public scrollbarOptions = { axis: 'y', theme: 'minimal-dark' };
   constructor(

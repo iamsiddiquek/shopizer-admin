@@ -112,7 +112,7 @@ export class AttributeFormComponent implements OnInit {
   }
 
   fillForm() {
-    let index = this.optionValues.findIndex((a) => a.value === this.attribute.optionValue.code);
+    const index = this.optionValues.findIndex((a) => a.value === this.attribute.optionValue.code);
     let value = null;
     if(this.attribute.optionValue != null) {
       value = this.attribute.optionValue.code;

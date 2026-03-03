@@ -36,8 +36,8 @@ export class RulesComponent implements OnInit {
     selectedActionsData: Array<any> = [];
     config: QueryBuilderConfig;
 
-    rules_time: boolean = false;
-    loadingList: boolean = false
+    rules_time = false;
+    loadingList = false
     shippingResult: Array<any> = [];
     resultData: Array<any> = [];
     selectedResult: any;
@@ -66,7 +66,7 @@ export class RulesComponent implements OnInit {
                     console.log(rulesData)
                     this.title = 'Update Rules'
                     this.buttonText = 'Update'
-                    let j = this.stores.find(x => x.code === rulesData.store);
+                    const j = this.stores.find(x => x.code === rulesData.store);
                     this.rules = rulesData
                     setTimeout(() => {
                         console.log(rulesData.store)
@@ -78,7 +78,7 @@ export class RulesComponent implements OnInit {
                     this.query = rulesData.ruleSets[0];
 
                     // console.log(this.actionsData);\
-                    let array1 = this.actionsData
+                    const array1 = this.actionsData
                     var array3 = array1.filter(function (obj) {
                         return rulesData.actions.find((a) => {
                             if (a.value) {
@@ -115,7 +115,7 @@ export class RulesComponent implements OnInit {
             });
     }
     getRulesCriterias() {
-        let fields = {}
+        const fields = {}
         this.sharedService.getRulesCriterias()
             .subscribe(data => {
                 // console.log(data)
@@ -158,11 +158,11 @@ export class RulesComponent implements OnInit {
     onSubmit() {
         this.loadingList = true;
         console.log(this.query)
-        let actions = [];
+        const actions = [];
         this.actionsData.map((value) => {
             actions.push({ code: value.code, value: value.value })
         });
-        let querys = { condition: this.query.condition, rules: [] };
+        const querys = { condition: this.query.condition, rules: [] };
         this.query.rules.map((q) => {
             if (typeof q.value === 'string' || q.value instanceof String) {
                 querys.rules.push({ field: q.field, operator: q.operator, value: [q.value] })
@@ -170,14 +170,14 @@ export class RulesComponent implements OnInit {
                 querys.rules.push({ field: q.field, operator: q.operator, value: q.value })
             }
         });
-        let param = {
+        const param = {
             "name": this.rules.name,
             "code": this.rules.code,
             "store": this.rules.store,
             "enabled": this.rules.enabled,
             "startDate": moment(this.rules.startDate).utc(),
             "endDate": moment(this.rules.endDate).utc(),
-            "actions": actions,
+            actions,
             "ruleSets": [
                 querys
             ]

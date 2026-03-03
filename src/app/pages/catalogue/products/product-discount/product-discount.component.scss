@@ -1,4 +1,6 @@
 
+@use "../../../../@theme/styles/themes" as *;
+
 .short-header {
     width: 70px;
 }
@@ -17,8 +19,6 @@ td {
     text-overflow: ellipsis !important;
 }
 
-
-@import "../../../../@theme/styles/themes";
 
 @include nb-install-component() {
     nb-card {

@@ -317,7 +317,7 @@ export class AddBoxComponent implements OnInit {
       tooltip: 'Gallery',
       container: '.note-editor',
       className: 'note-btn',
-      click: function () {
+      click () {
         me.dialogService.open(ImageBrowserComponent, {}).onClose.subscribe(name => name && context.invoke('editor.pasteHTML', '<img src="' + name + '">'));
       }
     });

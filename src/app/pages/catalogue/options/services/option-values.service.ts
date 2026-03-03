@@ -38,7 +38,7 @@ export class OptionValuesService {
 
   checkOptionValueCode(code): Observable<any> {
     const params = {
-      'code': code,
+      code,
     };
     return this.crudService.get(`/v1/private/product/option/value/unique`, params);
   }

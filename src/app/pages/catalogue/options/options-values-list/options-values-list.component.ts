@@ -25,7 +25,7 @@ export class OptionsValuesListComponent implements OnInit {
   currentPage = 1;
   totalCount;
   params = this.loadParams();
-  searchValue: string = '';
+  searchValue = '';
   stores: Array<any> = [];
   selectedStore: String = '';
   settings = {};

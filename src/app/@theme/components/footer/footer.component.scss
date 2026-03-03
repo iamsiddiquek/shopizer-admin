@@ -1,6 +1,8 @@
 // @import '../../styles/themes';
 // @import '@nebular/theme/styles/global/breakpoints';
 // @import 'bootstrap/scss/mixins/breakpoints';
+@use '../../styles/themes' as *;
+@use '@nebular/theme/styles/global/breakpoints' as *;
 
 // @include nb-install-component() {
 //   width: 100%;
@@ -28,10 +30,6 @@
 //     }
 //   }
 // }
-
-@import '../../styles/themes';
-@import '@nebular/theme/styles/global/breakpoints';
-@import 'bootstrap/scss/mixins/breakpoints';
 
 @include nb-install-component() {
   width: 100%;

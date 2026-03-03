@@ -28,7 +28,7 @@ export class TaxClassListComponent implements OnInit {
   currentPage = 1;
   totalCount;
   // roles;
-  searchValue: string = '';
+  searchValue = '';
   isSuperAdmin: boolean;
 
   params = this.loadParams();

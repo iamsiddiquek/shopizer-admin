@@ -25,7 +25,7 @@ export class storeAutoCompleteComponent implements OnInit {
     searchStore() {
         this.storeService.getListOfStores({ code: 'DEFAULT' })
             .subscribe(res => {
-                let storeData = []
+                const storeData = []
                 res.data.forEach((store) => {
                     storeData.push(store.code);
                 });

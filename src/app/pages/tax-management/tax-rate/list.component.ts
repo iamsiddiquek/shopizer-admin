@@ -28,11 +28,11 @@ export class TaxRateListComponent implements OnInit {
   currentPage = 1;
   totalCount;
   // roles;
-  searchValue: string = '';
+  searchValue = '';
   isSuperAdmin: boolean;
 
   params = this.loadParams();
-  public input: string = '<input type="checkbox"></input>';
+  public input = '<input type="checkbox"></input>';
   constructor(
     private taxService: TaxService,
     private router: Router,

@@ -30,7 +30,7 @@ export class StoresListComponent implements OnInit {
   totalCount;
   totalPages;
   merchant = '';
-  searchValue: string = '';
+  searchValue = '';
 
   params = this.loadParams();
 
@@ -160,6 +160,7 @@ export class StoresListComponent implements OnInit {
     switch (event.action) {
       case 'details'://must be super admin or admin retail or admin
         if (!this.securityService.isAnAdmin()) {
+          break;
         } else {
           this.router.navigate(['pages/store-management/store/', event.data.code]);
           break;

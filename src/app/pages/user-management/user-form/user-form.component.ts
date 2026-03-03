@@ -173,7 +173,7 @@ export class UserFormComponent implements OnInit {
       //console.log('List stores -> ' + JSON.stringify(this.stores));
 
       //from the list select current store
-      let uStore = this.stores.find(s => s.code === this.store);
+      const uStore = this.stores.find(s => s.code === this.store);
       //console.log('Selected store -> ' + uStore.code);
 
       //const uStore = this.stores.find((this.store) => store.code === this.form.value.store);

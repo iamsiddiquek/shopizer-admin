@@ -71,7 +71,7 @@ export class ProductService {
 
   checkProductSku(code): Observable<any> {
     const params = {
-      'code': code,
+      code,
     };
     return this.crudService.get(`/v1/private/product/unique`, params);
   }

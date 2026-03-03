@@ -21,12 +21,12 @@ export class TaxRateAddComponent implements OnInit {
     priority: 0,
     taxClass: ''
   }
-  loadingList: boolean = false;
-  codeExits: boolean = false;
-  isUpdated: boolean = false;
+  loadingList = false;
+  codeExits = false;
+  isUpdated = false;
   taxRateID: any;
-  language: string = 'en'
-  isUpdate: boolean = false;
+  language = 'en'
+  isUpdate = false;
   countryData: Array<any> = [];
   stateData: Array<any> = [];
   taxClassData: Array<any> = [];
@@ -112,7 +112,7 @@ export class TaxRateAddComponent implements OnInit {
   save() {
     this.loadingList = true;
     console.log(this.formValue);
-    let param = {
+    const param = {
       code: this.formValue.code,
       country: this.formValue.country,
       descriptions: [
@@ -137,7 +137,7 @@ export class TaxRateAddComponent implements OnInit {
   update() {
     this.loadingList = true;
     console.log(this.formValue)
-    let param = {
+    const param = {
       code: this.formValue.code,
       country: this.formValue.country,
       descriptions: [

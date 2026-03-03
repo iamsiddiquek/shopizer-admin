@@ -19,7 +19,7 @@ import { Description } from '../../../shared/models/description';
 export class CatalogueFormComponent implements OnInit {
   @ViewChild('tree', { static: false }) tree;
   form: UntypedFormGroup;
-  loader: boolean = false;
+  loader = false;
   isCodeUnique = true;
   nodes = [];
   category = [];
@@ -62,8 +62,8 @@ export class CatalogueFormComponent implements OnInit {
   }
 
   filterEntry() {
-    let productsArray = [];
-    let categoryArray = [];
+    const productsArray = [];
+    const categoryArray = [];
     if (this.nodes.length > 0) {
       this.nodes.forEach(function (entry) {
         console.log(JSON.stringify(entry));

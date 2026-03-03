@@ -72,7 +72,7 @@ export class AuthService {
   }
   checkIfStoreExist(code): Observable<any> {
     const params = {
-      'code': code,
+      code,
     };
     return this.crudService.get(`/v1/store/unique`, params);
   }

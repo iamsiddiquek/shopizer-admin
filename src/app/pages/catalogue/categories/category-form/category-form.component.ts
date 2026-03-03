@@ -339,7 +339,7 @@ export class CategoryFormComponent implements OnInit {
         return;
       }
 
-      let errors = this.findInvalidControls();
+      const errors = this.findInvalidControls();
       if (errors.length > 0) {
         this.toastr.error(this.translate.instant('COMMON.FILL_REQUIRED_FIELDS'));
         this.loading = false;
@@ -368,7 +368,7 @@ export class CategoryFormComponent implements OnInit {
 
   public findInvalidControls(): string[] {
     var invalidControls: string[] = [];
-    let recursiveFunc = (form: UntypedFormGroup | UntypedFormArray) => {
+    const recursiveFunc = (form: UntypedFormGroup | UntypedFormArray) => {
       Object.keys(form.controls).forEach(field => {
         const control = form.get(field);
         if (control.invalid) invalidControls.push(field);
@@ -391,7 +391,7 @@ export class CategoryFormComponent implements OnInit {
       tooltip: 'Gallery',
       container: '.note-editor',
       className: 'note-btn',
-      click: function () {
+      click () {
         //console.log(me);
         me.dialogService.open(ImageBrowserComponent, {}).onClose.subscribe(name => name && context.invoke('editor.pasteHTML', '<img src="' + name + '">'));
       }

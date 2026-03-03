@@ -20,8 +20,8 @@ import { ToastrService } from 'ngx-toastr';
 export class RegisterComponent implements OnInit {
   showPass = 0;
   isCodeUnique = false;
-  errorMessage: string = '';
-  successMessage: string = '';
+  errorMessage = '';
+  successMessage = '';
   user = {
     firstName: '',
     lastName: '',
@@ -93,7 +93,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onRegister() {
-    let param = {
+    const param = {
       "address": this.user.address,
       "city": this.user.city,
       "code": this.user.code,

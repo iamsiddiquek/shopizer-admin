@@ -63,7 +63,7 @@ export class CrudService {
   }
 
   listCountriesByLanguage(lang: string): Observable<Country[]> {
-    let countryUrl = this.url + `/v1/country?lang=` + lang;
+    const countryUrl = this.url + `/v1/country?lang=` + lang;
 
     return this.http.get<Country[]>(countryUrl);
     //.publishReplay(1) // this tells Rx to cache the latest emitted value

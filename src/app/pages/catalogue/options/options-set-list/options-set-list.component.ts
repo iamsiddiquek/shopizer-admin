@@ -89,7 +89,7 @@ export class OptionsSetListComponent implements OnInit {
           filter: false,
           valuePrepareFunction: (data) => {
             if(data != null) {
-              let value = data.map(a => a.name).join(", ");
+              const value = data.map(a => a.name).join(", ");
               return value;
             }
           }
@@ -100,7 +100,7 @@ export class OptionsSetListComponent implements OnInit {
           filter: false,
           valuePrepareFunction: (data) => {
             if(data != null) {
-              let value = data.map(a => a.name).join(", ");
+              const value = data.map(a => a.name).join(", ");
               return value;
             }
           }

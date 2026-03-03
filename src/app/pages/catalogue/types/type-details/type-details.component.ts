@@ -20,8 +20,8 @@ import { ConfigService } from '../../../shared/services/config.service';
 export class TypeDetailsComponent implements OnInit {
 
   form: UntypedFormGroup;
-  loading: boolean = false;
-  loaded: boolean = false;
+  loading = false;
+  loaded = false;
   isReadonlyCode = false;
   isCodeExist = false;
   isValidCode = true;
@@ -53,7 +53,7 @@ export class TypeDetailsComponent implements OnInit {
 
     this.loading = true;
     
-    let param = {
+    const param = {
       //lang: this.storageService.getLanguage(),
       lang: "_all",
       store: this.storageService.getMerchant()
@@ -164,7 +164,7 @@ export class TypeDetailsComponent implements OnInit {
       return;
     }
 
-    let obj = this.form.value;
+    const obj = this.form.value;
 
     if (this.type.id) {
 

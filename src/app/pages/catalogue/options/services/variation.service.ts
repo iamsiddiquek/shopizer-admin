@@ -17,7 +17,7 @@ export class VariationService {
 
   checkCode(code): Observable<any> {
     const params = {
-      'code': code,
+      code,
     };
     return this.crudService.get(`/v2/private/product/variation/unique`, params);
   }

@@ -17,7 +17,7 @@ import { environment } from '../../../environments/environment';
 })
 export class HomeComponent implements OnInit {
   loading = false;
-  loadingList: boolean = false;
+  loadingList = false;
   user = {
     userName: '',
     lastAccess: '',
@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    let lang = this.storageService.getLanguage()
+    const lang = this.storageService.getLanguage()
     this.loading = true;
     const store = localStorage.getItem('merchant');
     forkJoin([this.crudService.listCountriesByLanguage(lang), this.userService.getUserProfile(), this.userService.getMerchant(store)])

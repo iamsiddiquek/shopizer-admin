@@ -23,7 +23,7 @@ export class CategoriesListComponent implements OnInit {
   source: LocalDataSource = new LocalDataSource();
   listingService: ListingService;
   loadingList = false;
-  loading: boolean = false;
+  loading = false;
   categories = [];
   settings = {};
 
@@ -32,7 +32,7 @@ export class CategoriesListComponent implements OnInit {
   currentPage = 1; //start base
   totalCount;
   roles;
-  searchValue: string = '';
+  searchValue = '';
 
   // request params
   params = this.loadParams();

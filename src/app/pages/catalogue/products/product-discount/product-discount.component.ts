@@ -30,7 +30,7 @@ export class ProductDiscountComponent implements OnInit {
     this.id = this.productService.getProductIdRoute(this.router,this.location);
 
     //scroll down to discount tab
-    let el = document.getElementById('tabs');
+    const el = document.getElementById('tabs');
     el.scrollIntoView();
 
     //get product price

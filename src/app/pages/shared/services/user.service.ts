@@ -94,23 +94,16 @@ export class UserService {
       store: params && params.store ? params.store : store,
     };
 
-    console.info('[UserService] Fetching users list', requestParams);
-
     return this.crudService.get(`/v1/private/users`, requestParams).pipe(
       map((res: any) => this.normalizeApiResponse(res, 'Users loaded successfully', [])),
-      catchError((error) => {
-        console.error('[UserService] Failed to fetch users list', error);
-        return throwError(() => error);
-      }),
+      catchError((error) => throwError(() => error)),
     );
   }
 
   createUser(user: any, store: any): Observable<any> {
     const params = {
-      'store': store
+      store
     };
-
-    console.info('[UserService] Creating user', { store, email: user && user.emailAddress });
 
     return this.crudService.post(`/v1/private/user/`, user, { params, observe: 'response' }).pipe(
       map((response: any) => {
@@ -126,23 +119,20 @@ export class UserService {
           httpStatus: response && response.status,
         };
       }),
-      catchError((error) => {
-        console.error('[UserService] Failed to create user', error);
-        return throwError(() => error);
-      }),
+      catchError((error) => throwError(() => error)),
     );
   }
 
   updateUser(id: any, user: any, store: any): Observable<any> {
     const params = {
-      'store': store
+      store
     };
     return this.crudService.put(`/v1/private/user/${id}`, user, { params });
   }
 
   deleteUser(id: any, store: any): Observable<any> {
     const params = {
-      'store': store
+      store
     };
     return this.crudService.delete(`/v1/private/user/${id}`, { params });
   }

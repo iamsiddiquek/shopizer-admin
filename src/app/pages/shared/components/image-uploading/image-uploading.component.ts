@@ -160,7 +160,7 @@ export class ImageUploadingComponent implements OnInit {
     );
 
     console.log("drag::", dragIndex, dropIndex);
-    let newObj = { "id": this.images[dragIndex].id, "position": dropIndex + 1 }
+    const newObj = { "id": this.images[dragIndex].id, "position": dropIndex + 1 }
     this.update.emit(newObj)
 
 

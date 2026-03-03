@@ -5,15 +5,15 @@
  */
 
 /* SystemJS module definition */
-declare var module: NodeModule;
+declare const module: NodeModule;
 interface NodeModule {
   id: string;
 }
 
-declare var tinymce: any;
-declare var echarts: any;
+declare const tinymce: any;
+declare const echarts: any;
 
-declare var $ENV: Env;
+declare const $ENV: Env;
 interface Env {
   googleApiKey: string;
   mode: string;

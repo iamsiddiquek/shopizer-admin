@@ -49,7 +49,7 @@ export class ProductAttributesComponent implements OnInit {
   totalCount;
 
   params = this.loadParams();
-  public input: string = '<input type="checkbox"></input>';
+  public input = '<input type="checkbox"></input>';
   constructor(
     private productAttributesService: ProductAttributesService,
     private productService: ProductService,
@@ -84,7 +84,7 @@ export class ProductAttributesComponent implements OnInit {
     this.id = this.productService.getProductIdRoute(this.router,this.location);
 
     //specify add image url to image component
-    let el = document.getElementById('tabs');
+    const el = document.getElementById('tabs');
     el.scrollIntoView();
     this.getList();
 

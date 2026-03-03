@@ -14,8 +14,8 @@ export class PropertiesService {
 
     getProductProperties(productType, lang): Observable<any> {
         const params = {
-            productType: productType,
-            lang: lang
+            productType,
+            lang
         };
         return this.crudService.get(`/v1/private/product/property/set`, params);
     }

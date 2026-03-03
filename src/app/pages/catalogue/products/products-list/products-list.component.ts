@@ -24,7 +24,7 @@ export class ProductsListComponent implements OnInit {
   source: LocalDataSource = new LocalDataSource();
   listingService: ListingService;
   loadingList = false;
-  loading: boolean = false;
+  loading = false;
   stores = [];
   isSuperadmin: boolean;
   selectedStore: String = '';
@@ -115,7 +115,7 @@ export class ProductsListComponent implements OnInit {
   getStore() {
     this.storeService.getListOfStores({ code: 'DEFAULT' })
       .subscribe(res => {
-        let storeData = []
+        const storeData = []
         res.data.forEach((store) => {
           storeData.push(store.code);
         });

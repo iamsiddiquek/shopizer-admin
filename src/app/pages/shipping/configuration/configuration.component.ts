@@ -21,8 +21,8 @@ export class ConfigurationComponent {
   code = "code";
   label = "label";
   loading = false;
-  expedition: boolean = false;
-  taxOnShipping: boolean = false;
+  expedition = false;
+  taxOnShipping = false;
   stores: Array<any> = [];
   selectedStore: String = '';
   isSuperAdmin: boolean;

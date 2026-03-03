@@ -49,8 +49,8 @@ export class HeaderComponent implements OnInit {
       }
       // language events
       if (el.tag === 'language') {
-        let lang = el.item.title
-        let langCode = this.langMap[el.item.title];
+        const lang = el.item.title
+        const langCode = this.langMap[el.item.title];
         this.setLanguage(langCode);
       }
     });
@@ -79,7 +79,7 @@ export class HeaderComponent implements OnInit {
   }
 
   translateLang(key) {
-    let translated =  this.translate.instant("LANG." + key);
+    const translated =  this.translate.instant("LANG." + key);
     return translated;
   }
 

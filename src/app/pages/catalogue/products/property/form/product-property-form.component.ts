@@ -21,8 +21,8 @@ export class ProductPropertyForm implements OnInit {
     attribute: any = {};
 
     form: UntypedFormGroup;
-    perPage: number = 15;
-    loader: boolean = false;
+    perPage = 15;
+    loader = false;
     languages: Array<any> = [];
     options: Array<any> = [];
     optionValues: Array<any> = [];
@@ -77,7 +77,7 @@ export class ProductPropertyForm implements OnInit {
     getProductProperty() {
         this.propertiesService.getProductProperties(this.productType, localStorage.getItem('lang'))
             .subscribe(property => {
-                let temp = []
+                const temp = []
                 property.map((data) => {
                     temp.push({ value: data.option.id, label: data.option.name, type: data.option.type, values: data.values })
                 });
@@ -112,13 +112,13 @@ export class ProductPropertyForm implements OnInit {
     onChangePropertyOption(e) {
         // console.log('------------', this.options)
         // console.log(e)
-        let record = this.options.find((a) => {
+        const record = this.options.find((a) => {
             return a.value === e.value
         })
         // console.log(record)
         this.selectedType = record.type;
         if (record.type !== 'text') {
-            let temp = [];
+            const temp = [];
             if (record.values && record.values.length > 0) {
                 record.values.map((data) => {
                     temp.push({ value: data.id, label: data.name })
@@ -140,7 +140,7 @@ export class ProductPropertyForm implements OnInit {
         // const priceSeparator = this.attribute.productAttributePrice.indexOf('$') + 1;
         // this.currency = this.attribute.productAttributePrice.slice(0, priceSeparator);
         //console.log(this.optionValues);
-        let index = this.optionValues.findIndex((a) => a.value === this.attribute.optionValue.id);
+        const index = this.optionValues.findIndex((a) => a.value === this.attribute.optionValue.id);
         console.log(index);
         this.form.patchValue({
             option: this.attribute.option.id,

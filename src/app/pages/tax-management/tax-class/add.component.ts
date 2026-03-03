@@ -16,11 +16,11 @@ export class TaxClassAddComponent implements OnInit {
     code: '',
     name: ''
   }
-  loadingList: boolean = false;
-  codeExits: boolean = false;
-  isUpdated: boolean = false;
+  loadingList = false;
+  codeExits = false;
+  isUpdated = false;
   taxClassID: any;
-  isUpdate: boolean = false;
+  isUpdate = false;
   constructor(
     // private sharedService: SharedService,
     private toastr: ToastrService,
@@ -73,7 +73,7 @@ export class TaxClassAddComponent implements OnInit {
   save() {
     this.loadingList = true;
 
-    let param = {
+    const param = {
       code: this.tax.code,
       name: this.tax.name
     }
@@ -90,7 +90,7 @@ export class TaxClassAddComponent implements OnInit {
   update() {
     this.loadingList = true;
 
-    let param = {
+    const param = {
       code: this.tax.code,
       name: this.tax.name
     }

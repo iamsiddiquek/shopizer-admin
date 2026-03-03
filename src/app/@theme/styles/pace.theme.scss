@@ -4,7 +4,9 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
- @mixin ngx-pace-theme() {
+@use './themes' as *;
+
+@mixin ngx-pace-theme() {
 
   .pace .pace-progress {
     background: nb-theme(color-primary-default);

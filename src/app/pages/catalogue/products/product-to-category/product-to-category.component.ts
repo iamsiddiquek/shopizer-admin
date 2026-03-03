@@ -21,8 +21,8 @@ export class ProductToCategoryComponent implements OnInit {
     loaded = false;
     loading = false;
 
-    perPage: number = 50;//ideally display all category
-    currentPage: number = 1;
+    perPage = 50;//ideally display all category
+    currentPage = 1;
 
     dropdownList = [];
     categories = [];
@@ -66,7 +66,7 @@ export class ProductToCategoryComponent implements OnInit {
         this.load();
 
         //specify add image url to image component
-        let el = document.getElementById('tabs');
+        const el = document.getElementById('tabs');
         el.scrollIntoView();
     }
 

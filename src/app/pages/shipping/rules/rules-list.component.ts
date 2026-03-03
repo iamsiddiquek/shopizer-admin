@@ -17,7 +17,7 @@ import { ToastrService } from 'ngx-toastr';
 export class RulesListComponent implements OnInit {
 
   source: LocalDataSource = new LocalDataSource();
-  loadingList: boolean = false;
+  loadingList = false;
   settings = {};
   perPage = 10;
   currentPage = 1;

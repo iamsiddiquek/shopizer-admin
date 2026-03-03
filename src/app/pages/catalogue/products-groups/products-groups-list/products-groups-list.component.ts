@@ -17,7 +17,7 @@ export class ProductsGroupsListComponent implements OnInit {
   groups = [];
   selectedGroup;
   itemsParams = this.loadItemsParams();
-  loading: boolean = false;
+  loading = false;
   constructor(
     private productService: ProductService,
     private productGroupsService: ProductGroupsService,

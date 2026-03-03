@@ -94,8 +94,6 @@ export class UsersListComponent implements OnInit {
     this.params.page = this.currentPage - 1;
     this.loadingList = true;
 
-    console.info('[UsersList] Loading users', this.params);
-
     this.userService.getUsersList(this.storageService.getMerchant(), this.params)
       .subscribe({
         next: (res) => {
@@ -107,11 +105,6 @@ export class UsersListComponent implements OnInit {
 
           this.totalCount = res && typeof res.recordsTotal === 'number' ? res.recordsTotal : this.users.length;
           this.totalPages = res && typeof res.totalPages === 'number' ? res.totalPages : 1;
-
-          console.info('[UsersList] Users loaded', {
-            recordsTotal: this.totalCount,
-            loadedRows: this.users.length,
-          });
 
           this.loadingList = false;
         },

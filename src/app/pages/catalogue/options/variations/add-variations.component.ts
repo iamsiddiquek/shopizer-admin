@@ -31,7 +31,7 @@ export class AddVariationsComponent implements OnInit {
     option: '',
     optionValue: ''
   }
-  loading: boolean = false;
+  loading = false;
   form: UntypedFormGroup;
   productOption: Array<any> = [];
   productOptionValue: Array<any> = [];
@@ -133,7 +133,7 @@ export class AddVariationsComponent implements OnInit {
             return el.language === this.storageService.getLanguage();
           });
           const name = description && description.name ? description.name : '';
-          this.productOption.push({ id: value.id, code: value.code, name: name })
+          this.productOption.push({ id: value.id, code: value.code, name })
         })
       }, error => {
         //TODO error
@@ -152,7 +152,7 @@ export class AddVariationsComponent implements OnInit {
             return el.language === this.storageService.getLanguage();
           });
           const name = description && description.name ? description.name : '';
-          this.productOptionValue.push({ id: value.id, code: value.code, name: name })
+          this.productOptionValue.push({ id: value.id, code: value.code, name })
         })
       }, error => {
         //TODO error

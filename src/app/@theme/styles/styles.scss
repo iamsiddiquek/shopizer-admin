@@ -1,23 +1,20 @@
 //@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap");
 
+@use "sass:meta";
+
 // themes - our custom or/and out of the box themes
-@import "themes";
+@use "themes" as *;
 
 // framework component themes (styles tied to theme variables)
-@import "@nebular/theme/styles/globals";
-@import "@nebular/auth/styles/globals";
-
-@import "bootstrap/scss/functions";
-@import "bootstrap/scss/variables";
-@import "bootstrap/scss/mixins";
-@import "bootstrap/scss/grid";
+@use "@nebular/theme/styles/globals" as *;
+@use "@nebular/auth/styles/globals" as *;
 
 // loading progress bar theme
-@import "./pace.theme";
+@use "./pace.theme" as *;
+@use "./layout" as *;
+@use "./overrides" as *;
 
-@import "./layout";
-@import "./overrides";
-@import "custom";
+@include meta.load-css("custom");
 
 .nb-theme-corporate nb-checkbox .text:not(:empty) {
   padding-left: 6px;
@@ -54,7 +51,7 @@
     $transition-duration: 0ms;
   }
 
-  @import "ngx-smart-modal/ngx-smart-modal";
+  @include meta.load-css("ngx-smart-modal/ngx-smart-modal");
 
   ////////////
   // mixins //

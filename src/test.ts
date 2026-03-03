@@ -14,18 +14,24 @@ import {
   platformBrowserDynamicTesting,
 } from '@angular/platform-browser-dynamic/testing';
 
-// Unfortunately there's no typing for the `__karma__` variable. Just declare it as any.
-declare const __karma__: any;
+interface KarmaRunner {
+  loaded: () => void;
+  start: () => void;
+}
+
+// Karma exposes this global at runtime.
+declare const __karma__: KarmaRunner;
 
 // Prevent Karma from running prematurely.
-__karma__.loaded = function () {};
+__karma__.loaded = () => {};
 
 // First, initialize the Angular testing environment.
 getTestBed().initTestEnvironment(
   BrowserDynamicTestingModule,
-  platformBrowserDynamicTesting(), {
-    teardown: { destroyAfterEach: false }
-},
+  platformBrowserDynamicTesting(),
+  {
+    teardown: { destroyAfterEach: false },
+  },
 );
 
 // Finally, start Karma to run the tests.

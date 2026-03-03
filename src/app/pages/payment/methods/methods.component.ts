@@ -43,7 +43,7 @@ export class PaymentMethodsComponent implements OnInit {
   }
 
   transformImage(img){
-    let encoded = 'data:image/png;base64,'+ img
+    const encoded = 'data:image/png;base64,'+ img
     return this.sanitizer.bypassSecurityTrustResourceUrl(encoded);
   }
 

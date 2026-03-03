@@ -13,7 +13,7 @@ export class KeywordsearchPipe implements PipeTransform {
     return value.filter((item) => {
       if (item.value.hasOwnProperty(key)) {
         if (term) {
-          let regExp = new RegExp('\\b' + term, 'gi');
+          const regExp = new RegExp('\\b' + term, 'gi');
           return regExp.test(item.value[key]);
         } else {
           return true;

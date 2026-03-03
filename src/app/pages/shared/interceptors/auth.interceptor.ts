@@ -9,7 +9,7 @@ import { AuthService } from '../../auth/services/auth.service';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  isRefreshingToken: boolean = false;
+  isRefreshingToken = false;
   tokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>(null);
 
   constructor(

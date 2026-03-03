@@ -24,7 +24,7 @@ export class OriginComponent implements OnInit {
     postalCode: ''
   }
   visible: any;
-  loadingList: boolean = false;
+  loadingList = false;
   countries = [];
   states = [];
   stores: Array<any> = [];
@@ -62,7 +62,7 @@ export class OriginComponent implements OnInit {
   onSubmit() {
     this.loadingList = true;
 
-    let param = {
+    const param = {
       address: this.shipOriginForm.address,
       city: this.shipOriginForm.city,
       postalCode: this.shipOriginForm.postalCode,

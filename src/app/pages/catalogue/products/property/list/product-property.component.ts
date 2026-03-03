@@ -70,7 +70,7 @@ export class ProductProperties implements OnInit {
         
 
     //specify add image url to image component
-    let el = document.getElementById('tabs');
+    const el = document.getElementById('tabs');
     el.scrollIntoView();
     this.getList();
 

@@ -517,7 +517,7 @@ export class ProductFormComponent implements OnInit {
       tooltip: 'Gallery',
       container: '.note-editor',
       className: 'note-btn',
-      click: function () {
+      click () {
         //console.log(me);
         me.dialogService.open(ImageBrowserComponent, {}).onClose.subscribe(name => name && context.invoke('editor.pasteHTML', '<img src="' + name + '">'));
       }

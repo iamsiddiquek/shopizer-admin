@@ -31,7 +31,7 @@ export class StoreService {
 
   checkIfStoreExist(code): Observable<any> {
     const params = {
-      'code': code,
+      code,
     };
     return this.crudService.get(`/v1/private/store/unique`, params);
   }

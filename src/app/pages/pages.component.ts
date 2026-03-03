@@ -58,7 +58,7 @@ export class PagesComponent {
   checkConnection() {
 
     this.connectionStatusService.getStatusConnection().subscribe(res => {
-      let toast: NbToastRef = null;
+      const toast: NbToastRef = null;
       console.log(res);
       if (res.status !== 'UP') {
         this.router.navigate(['/errorPage']);

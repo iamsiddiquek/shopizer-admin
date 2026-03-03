@@ -15,7 +15,7 @@ import { MalihuScrollbarService } from 'ngx-malihu-scrollbar';
 export class FilesComponent {
   name: string;
   copyText(val: string) {
-    let selBox = document.createElement('textarea');
+    const selBox = document.createElement('textarea');
     selBox.style.position = 'fixed';
     selBox.style.left = '0';
     selBox.style.top = '0';
@@ -94,8 +94,8 @@ export class FilesComponent {
           const caption = this.data[i].name;
           // const thumb = this.uploadedFiles[i].path + this.uploadedFiles[i].name;
           const album = {
-            src: src,
-            caption: caption,
+            src,
+            caption,
             // thumb: thumb
           };
           this._albums.push(album);
@@ -113,7 +113,7 @@ export class FilesComponent {
     console.log(files)
     this.loadingList = true;
     files.addedFiles.forEach(element => {
-      let reader = new FileReader();
+      const reader = new FileReader();
       reader.onload = (e: any) => {
         this.data.push({
           name: element.name,
@@ -125,7 +125,7 @@ export class FilesComponent {
     });
     for (var i = 0; i < files.addedFiles.length; i++) {
 
-      let formData = new FormData();
+      const formData = new FormData();
       formData.append('file', files.addedFiles[i]);
       this.crudService.post('/v1/private/file', formData)
         .subscribe(data => {
